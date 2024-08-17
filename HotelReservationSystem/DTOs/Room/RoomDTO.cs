@@ -12,8 +12,8 @@ namespace HotelReservationSystem.DTOs.Room
         public double RoomSize { get; set; }
         public AvailableStatus AvailableStatus { get; set; }
         public int RoomNumber { get; set; }
-        public List<PictureRoom>? RoomPictures { get; set; }
-        public List<RoomFacility>? RoomFacilities { get; set; }
-        public List<RoomOffer>? RoomOffers { get; set; }
+        public List<PictureRoomDTO>? RoomPictures { get; set; }
+        //public List<RoomFacility>? RoomFacilities { get; set; }
+        //public List<RoomOffer>? RoomOffers { get; set; }
     }
 }

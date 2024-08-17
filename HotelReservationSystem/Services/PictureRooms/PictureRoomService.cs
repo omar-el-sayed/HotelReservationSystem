@@ -15,9 +15,13 @@ namespace HotelReservationSystem.Services.PictureRooms
         }
         public void AddRange(int Id,IEnumerable<PictureRoomDTO> pictureRoomDTO)
         {
-            //var pictureroom = pictureRoomDTO.AsQueryable().Map<PictureRoom>();
-            //repo.Add(pictureroom);
-            //repo.SaveChanges();
+            var picturerooms = pictureRoomDTO.AsQueryable().Map<PictureRoom>();
+            foreach (var pictureroom in picturerooms)
+            {
+                pictureroom.Id = Id;
+                repo.Add(pictureroom);
+            }
+            repo.SaveChanges();
         }
     }
 }
