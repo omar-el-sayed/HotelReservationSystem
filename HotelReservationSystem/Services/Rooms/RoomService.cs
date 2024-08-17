@@ -21,13 +21,13 @@ namespace HotelReservationSystem.Services.Rooms
 
         public IEnumerable<RoomDTO> GetAll()
         {
-            var rooms=repo.GetAll();
+            var rooms = repo.GetAll();
             return rooms.Map<RoomDTO>();
         }
 
         public RoomDTO GetById(int id)
         {
-            var room=repo.GetById(id);
+            var room = repo.GetById(id);
             return room.MapeOne<RoomDTO>();
         }
     }

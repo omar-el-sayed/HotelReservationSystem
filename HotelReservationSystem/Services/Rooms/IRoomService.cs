@@ -7,6 +7,5 @@ namespace HotelReservationSystem.Services.Rooms
         IEnumerable<RoomDTO> GetAll();
         RoomDTO GetById(int id);
         RoomDTO Add(RoomDTO roomDTO);
-
     }
 }
