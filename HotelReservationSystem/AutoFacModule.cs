@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using HotelReservationSystem.Data;
+using HotelReservationSystem.Repositories;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 
@@ -23,6 +24,7 @@ namespace HotelReservationSystem
                 .EnableSensitiveDataLogging();
                 return new ApplicationDbContext(optionbuilder.Options);
             }).InstancePerLifetimeScope();
+            builder.RegisterGeneric(typeof(GenericRepository<>)).As(typeof(IGenericRepository<>));
         }
     }
 }
