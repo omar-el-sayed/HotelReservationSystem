@@ -9,13 +9,17 @@ namespace HotelReservationSystem.Data
         {
             ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
         }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options):base(options)
         {
-            optionsBuilder.UseSqlServer("Server=.;Database=HotelReservationSystem;Trusted_Connection=True;TrustServerCertificate=True")
-                .LogTo(log => Debug.WriteLine(log), LogLevel.Information)
-                .EnableSensitiveDataLogging();
+            
         }
+
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //    optionsBuilder.UseSqlServer("Server=.;Database=HotelReservationSystem;Trusted_Connection=True;TrustServerCertificate=True")
+        //        .LogTo(log => Debug.WriteLine(log), LogLevel.Information)
+        //        .EnableSensitiveDataLogging();
+        //}
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
