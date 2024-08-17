@@ -19,23 +19,24 @@ namespace HotelReservationSystem.Services.Rooms
         public bool Update(UpdateRoomDto roomDto)
         {
             var room = repo.GetByIdWithTracking(roomDto.Id);
-
             if (room is null)
                 return false;
 
             //room.
 
             repo.Update(room);
+            repo.SaveChanges();
             return true;
         }
 
         public bool Delete(int id)
         {
             var room = repo.GetByIdWithTracking(id);
-
             if (room is null)
                 return false;
+
             repo.Delete(room);
+            repo.SaveChanges();
             return true;
         }
 
