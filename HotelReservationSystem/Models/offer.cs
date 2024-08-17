@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace HotelReservationSystem.Models
+﻿namespace HotelReservationSystem.Models
 {
     public class Offer : BaseEntity
     {
@@ -9,7 +7,5 @@ namespace HotelReservationSystem.Models
         public DateTime EndDate { get; set; }
         public decimal Discount { get; set; }
         public List<RoomOffer> RoomOffers { get; set; }
-
-
     }
 }

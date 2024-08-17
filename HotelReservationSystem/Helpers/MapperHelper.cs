@@ -11,9 +11,10 @@ namespace HotelReservationSystem.Helpers
         {
             return source.ProjectTo<TResult>(mapper.ConfigurationProvider);
         }
+
         public static TResult MapeOne<TResult>(this object source)
         {
             return mapper.Map<TResult>(source);
-        }    
+        }
     }
 }

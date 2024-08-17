@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-
-namespace HotelReservationSystem.Models
+﻿namespace HotelReservationSystem.Models
 {
     public class RoomOffer : BaseEntity
     {

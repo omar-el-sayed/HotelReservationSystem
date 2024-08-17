@@ -1,8 +1,6 @@
-﻿using HotelReservationSystem.Models;
-
-namespace HotelReservationSystem.DTOs
+﻿namespace HotelReservationSystem.DTOs.Room
 {
-    public class RoomDTO
+    public class UpdateRoomDto
     {
         public int Id { get; set; }
         public RoomType RoomType { get; set; }
@@ -12,8 +10,5 @@ namespace HotelReservationSystem.DTOs
         public double RoomSize { get; set; }
         public AvailableStatus AvailableStatus { get; set; }
         public int RoomNumber { get; set; }
-        public List<PictureRoom>? RoomPictures { get; set; }
-        public List<RoomFacility>? RoomFacilities { get; set; }
-        public List<RoomOffer>? RoomOffers { get; set; }
     }
 }

@@ -1,22 +1,39 @@
-﻿using HotelReservationSystem.DTOs;
+﻿using HotelReservationSystem.DTOs.Room;
 using HotelReservationSystem.Helpers;
 using HotelReservationSystem.Models;
 using HotelReservationSystem.Repositories;
 
 namespace HotelReservationSystem.Services.Rooms
 {
-    public class RoomService : IRoomService
+    public class RoomService(IGenericRepository<Room> repo) : IRoomService
     {
-        private readonly IGenericRepository<Room> repo;
-
-        public RoomService(IGenericRepository<Room> Repo)
-        {
-            repo = Repo;
-        }
-
         public RoomDTO Add(RoomDTO roomDTO)
         {
             return null;
+        }
+
+        public bool Update(UpdateRoomDto roomDto)
+        {
+            var room = repo.GetByIdWithTracking(roomDto.Id);
+
+            if (room is null)
+                return false;
+
+            //room.
+
+            repo.Update(room);
+            return true;
+        }
+
+        public bool Delete(int id)
+        {
+            var room = repo.GetByIdWithTracking(id);
+
+            if (room is null)
+                return false;
+
+            repo.Delete(room);
+            return true;
         }
 
         public IEnumerable<RoomDTO> GetAll()
