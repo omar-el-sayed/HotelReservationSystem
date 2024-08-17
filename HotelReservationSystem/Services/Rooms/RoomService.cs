@@ -6,6 +6,7 @@ using HotelReservationSystem.Services.PictureRooms;
 
 namespace HotelReservationSystem.Services.Rooms
 {
+
     public class RoomService : IRoomService
     {
         private readonly IGenericRepository<Room> repo;
@@ -17,7 +18,7 @@ namespace HotelReservationSystem.Services.Rooms
         }
         public RoomDTO Add(RoomDTO roomDTO)
         {
-            var room =roomDTO.MapeOne<Room>();
+            var room = roomDTO.MapeOne<Room>();
             repo.Add(room);
             repo.SaveChanges();
             pictureRoomService.AddRange(room.Id,roomDTO.RoomPictures);
