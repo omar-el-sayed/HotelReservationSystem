@@ -6,22 +6,23 @@ using HotelReservationSystem.Services.PictureRooms;
 
 namespace HotelReservationSystem.Services.Rooms
 {
-
     public class RoomService : IRoomService
     {
         private readonly IGenericRepository<Room> repo;
         private readonly IPictureRoomService pictureRoomService;
-        public RoomService(IGenericRepository<Room> Repo, IPictureRoomService pictureRoomService)
+
+        public RoomService(IGenericRepository<Room> repo, IPictureRoomService pictureRoomService)
         {
-            Repo=repo;
-            this.pictureRoomService=pictureRoomService;
+            this.repo = repo;
+            this.pictureRoomService = pictureRoomService;
         }
+
         public RoomDTO Add(RoomDTO roomDTO)
         {
             var room = roomDTO.MapeOne<Room>();
             repo.Add(room);
             repo.SaveChanges();
-            pictureRoomService.AddRange(room.Id,roomDTO.RoomPictures);
+            pictureRoomService.AddRange(room.Id, roomDTO.RoomPictures);
             return roomDTO;
         }
 
