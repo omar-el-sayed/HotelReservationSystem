@@ -8,9 +8,6 @@ namespace HotelReservationSystem.Services.Rooms
 {
     public class RoomService(IGenericRepository<Room> repo, IPictureRoomService pictureRoomService) : IRoomService
     {
-        private readonly IGenericRepository<Room> repo;
-        private readonly IPictureRoomService pictureRoomService;
-
         public RoomDTO Add(RoomDTO roomDTO)
         {
             var room = roomDTO.MapeOne<Room>();
