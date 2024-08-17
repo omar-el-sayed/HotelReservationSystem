@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using HotelReservationSystem.DTOs;
+using HotelReservationSystem.Models;
 
 namespace HotelReservationSystem.Profiles
 {
@@ -6,7 +8,7 @@ namespace HotelReservationSystem.Profiles
     {
         public RoomProfile()
         {
-            
+            CreateMap<Room,RoomDTO>().ReverseMap();
         }
     }
 }
