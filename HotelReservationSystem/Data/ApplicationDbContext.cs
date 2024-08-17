@@ -1,26 +1,21 @@
 ﻿using HotelReservationSystem.Models;
 using Microsoft.EntityFrameworkCore;
-using System.Diagnostics;
 
 namespace HotelReservationSystem.Data
 {
     public class ApplicationDbContext : DbContext
     {
-        public ApplicationDbContext()
+        public DbSet<Facility> Facilities { get; set; }
+        public DbSet<Offer> Offers { get; set; }
+        public DbSet<PictureRoom> PictureRooms { get; set; }
+        public DbSet<Room> Rooms { get; set; }
+        public DbSet<RoomFacility> RoomFacilities { get; set; }
+        public DbSet<RoomOffer> RoomOffers { get; set; }
+
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
             ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
         }
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options):base(options)
-        {
-            
-        }
-
-        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        //{
-        //    optionsBuilder.UseSqlServer("Server=.;Database=HotelReservationSystem;Trusted_Connection=True;TrustServerCertificate=True")
-        //        .LogTo(log => Debug.WriteLine(log), LogLevel.Information)
-        //        .EnableSensitiveDataLogging();
-        //}
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -30,7 +25,6 @@ namespace HotelReservationSystem.Data
 
             modelBuilder.Entity<RoomOffer>().HasOne(or => or.Offer)
                 .WithMany(o => o.RoomOffers).HasForeignKey(or => or.OfferId);
-
 
             modelBuilder.Entity<RoomFacility>().HasOne(rf => rf.Room)
                 .WithMany(r => r.RoomFacilities).HasForeignKey(rf => rf.RoomId);
@@ -58,10 +52,8 @@ namespace HotelReservationSystem.Data
             #region Room
             modelBuilder.Entity<Room>().Property(r => r.RoomType).HasColumnType("varchar(10)");
             modelBuilder.Entity<Room>().Property(r => r.Price).HasColumnType("money");
-            modelBuilder.Entity<Room>().Property(r => r.AvailableStatus).HasColumnType("varchar(20)"); 
+            modelBuilder.Entity<Room>().Property(r => r.AvailableStatus).HasColumnType("varchar(20)");
             #endregion
-
-
         }
     }
 }

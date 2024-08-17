@@ -1,14 +1,10 @@
-﻿namespace HotelReservationSystem.Models
-{
-    public class Room : BaseEntity
-    {
-        public Room()
-        {
-            RoomPictures = new List<PictureRoom>();
-            RoomFacilities = new List<RoomFacility>();
-            RoomOffers = new List<RoomOffer>();
-        }
+﻿using HotelReservationSystem.Models;
 
+namespace HotelReservationSystem.DTOs.Room
+{
+    public class RoomDTO
+    {
+        public int Id { get; set; }
         public RoomType RoomType { get; set; }
         public decimal Price { get; set; }
         public int NumOfBed { get; set; }
