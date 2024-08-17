@@ -4,11 +4,9 @@ namespace HotelReservationSystem.Models
 {
     public class RoomOffer : BaseEntity
     {
-        [ForeignKey("room")]
         public int RoomId { get; set; }
-        public Room? room { get; set; }
-        [ForeignKey("offer")]
-        public int offerId { get; set; }
-        public offer? offer { get; set; }
+        public Room? Room { get; set; }
+        public int OfferId { get; set; }
+        public Offer? Offer { get; set; }
     }
 }

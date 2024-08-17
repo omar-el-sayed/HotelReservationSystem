@@ -2,14 +2,13 @@
 
 namespace HotelReservationSystem.Models
 {
-    public class offer : BaseEntity
+    public class Offer : BaseEntity
     {
-        [MaxLength(50)]
         public string Name { get; set; }
-        public DateTime startDate { get; set; }
-        public DateTime endDate { get; set; }
-        public decimal discount { get; set; }
-        public List<RoomOffer> roomOffers { get; set; }
+        public DateTime StartDate { get; set; }
+        public DateTime EndDate { get; set; }
+        public decimal Discount { get; set; }
+        public List<RoomOffer> RoomOffers { get; set; }
 
 
     }
