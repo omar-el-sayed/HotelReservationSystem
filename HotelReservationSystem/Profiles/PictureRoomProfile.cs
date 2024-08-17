@@ -8,7 +8,8 @@ namespace HotelReservationSystem.Profiles
     {
         public PictureRoomProfile()
         {
-            CreateMap<PictureRoom,PictureRoomDTO>().ReverseMap();
+            CreateMap<PictureRoom,PictureRoomDTO>().ReverseMap()
+                .ForMember(dst=>dst.RoomId,opt=>opt.Ignore());
         }
     }
 }
