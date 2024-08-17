@@ -2,26 +2,32 @@
 using HotelReservationSystem.Helpers;
 using HotelReservationSystem.Models;
 using HotelReservationSystem.Repositories;
+using HotelReservationSystem.Services.PictureRooms;
 
 namespace HotelReservationSystem.Services.Rooms
 {
     public class RoomService : IRoomService
     {
         private readonly IGenericRepository<Room> repo;
+        private readonly IPictureRoomService pictureRoomService;
 
-        public RoomService(IGenericRepository<Room> Repo)
+        public RoomService(IGenericRepository<Room> Repo,IPictureRoomService pictureRoomService)
         {
             repo = Repo;
+            this.pictureRoomService = pictureRoomService;
         }
 
         public RoomDTO Add(RoomDTO roomDTO)
         {
-            return null;
+            var room =roomDTO.MapeOne<Room>();
+            repo.Add(room);
+            repo.SaveChanges();
+            return roomDTO;
         }
 
-        public IEnumerable<RoomDTO> GetAll()
+        public IEnumerable<RoomDTO> GetAvailableRoom()
         {
-            var rooms=repo.GetAll();
+            var rooms = repo.Get(r => r.AvailableStatus == AvailableStatus.available);
             return rooms.Map<RoomDTO>();
         }
 
