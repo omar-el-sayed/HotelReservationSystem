@@ -4,11 +4,11 @@ using HotelReservationSystem.Models;
 
 namespace HotelReservationSystem.Profiles
 {
-    public class RoomFacilityProfile :Profile
+    public class FacilityProfile :Profile
     {
-        public RoomFacilityProfile()
+        public FacilityProfile()
         {
-            CreateMap<RoomFacility, RoomFacilityDTO>().ReverseMap();
+            CreateMap<Facility, FacilityDTO>().ReverseMap();
         }
     }
 }

@@ -1,6 +1,9 @@
 ﻿using Autofac;
 using HotelReservationSystem.Data;
 using HotelReservationSystem.Repositories;
+using HotelReservationSystem.Services.Facilities;
+using HotelReservationSystem.Services.RoomFacilites;
+using HotelReservationSystem.Services.Rooms;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 
@@ -25,6 +28,9 @@ namespace HotelReservationSystem
                 return new ApplicationDbContext(optionbuilder.Options);
             }).InstancePerLifetimeScope();
             builder.RegisterGeneric(typeof(GenericRepository<>)).As(typeof(IGenericRepository<>));
+            builder.RegisterAssemblyTypes(typeof(IFacilityService).Assembly).AsImplementedInterfaces().InstancePerLifetimeScope();
+            builder.RegisterAssemblyTypes(typeof(IRoomFacilityService).Assembly).AsImplementedInterfaces().InstancePerLifetimeScope();
+            builder.RegisterAssemblyTypes(typeof(IRoomService).Assembly).AsImplementedInterfaces().InstancePerLifetimeScope();
         }
     }
 }
