@@ -6,22 +6,12 @@ using HotelReservationSystem.Services.PictureRooms;
 
 namespace HotelReservationSystem.Services.Rooms
 {
-    public class RoomService : IRoomService
+    public class RoomService(IGenericRepository<Room> repo, IPictureRoomService pictureRoomService) : IRoomService
     {
-        private readonly IGenericRepository<Room> repo;
-        private readonly IPictureRoomService pictureRoomService;
-
-        public RoomService(IGenericRepository<Room> repo, IPictureRoomService pictureRoomService)
-        {
-            this.repo = repo;
-            this.pictureRoomService = pictureRoomService;
-        }
-
         public RoomDTO Add(RoomDTO roomDTO)
         {
             var room = roomDTO.MapeOne<Room>();
             repo.Add(room);
-            repo.SaveChanges();
             pictureRoomService.AddRange(room.Id, roomDTO.RoomPictures);
             return roomDTO;
         }
@@ -35,7 +25,6 @@ namespace HotelReservationSystem.Services.Rooms
             //room.
 
             repo.Update(room);
-            repo.SaveChanges();
             return true;
         }
 
@@ -46,7 +35,6 @@ namespace HotelReservationSystem.Services.Rooms
                 return false;
 
             repo.Delete(room);
-            repo.SaveChanges();
             return true;
         }
 
