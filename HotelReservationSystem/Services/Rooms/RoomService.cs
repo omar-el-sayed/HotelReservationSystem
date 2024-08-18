@@ -7,19 +7,8 @@ using HotelReservationSystem.Services.RoomFacilites;
 
 namespace HotelReservationSystem.Services.Rooms
 {
-    public class RoomService(IGenericRepository<Room> repo, IPictureRoomService pictureRoomService) : IRoomService
+    public class RoomService(IGenericRepository<Room> repo, IPictureRoomService pictureRoomService, IRoomFacilityService roomFacilityService) : IRoomService
     {
-        private readonly IGenericRepository<Room> repo;
-        private readonly IPictureRoomService pictureRoomService;
-        private readonly IRoomFacilityService roomFacilityService;
-
-        public RoomService(IGenericRepository<Room> repo, IPictureRoomService pictureRoomService,IRoomFacilityService roomFacilityService)
-        {
-            this.repo = repo;
-            this.pictureRoomService = pictureRoomService;
-            this.roomFacilityService = roomFacilityService;
-        }
-
         public RoomDTO Add(RoomDTO roomDTO)
         {
             var room = roomDTO.MapeOne<Room>();
