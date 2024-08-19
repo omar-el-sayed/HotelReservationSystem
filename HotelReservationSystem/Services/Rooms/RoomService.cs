@@ -9,6 +9,7 @@ namespace HotelReservationSystem.Services.Rooms
 {
     public class RoomService(IGenericRepository<Room> repo, IPictureRoomService pictureRoomService, IRoomFacilityService roomFacilityService) : IRoomService
     {
+
         public int Add(RoomDTO roomDTO)
         {
             var room = roomDTO.MapeOne<Room>();
@@ -24,8 +25,8 @@ namespace HotelReservationSystem.Services.Rooms
                 return false;
 
             //room.
-
-            repo.Update(room);
+            var updatedRoom = roomDto.MapeOne<Room>();
+            repo.Update(updatedRoom);
             return true;
         }
 

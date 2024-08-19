@@ -5,6 +5,7 @@ using HotelReservationSystem.Services.Rooms;
 
 namespace HotelReservationSystem.Mediators.Room
 {
+
     public class RoomMediator : IRoomMediator
     {
         private readonly IRoomService roomService;
@@ -24,5 +25,6 @@ namespace HotelReservationSystem.Mediators.Room
             pictureRoomService.AddRange(roomid,roomDto.RoomPictures);
             roomFacilityService.AddRang(roomid, roomDto.RoomFacilities);
         }
-    }
+     }
+
 }
