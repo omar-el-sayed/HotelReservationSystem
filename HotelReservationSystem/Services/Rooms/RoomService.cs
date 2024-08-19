@@ -27,8 +27,9 @@ namespace HotelReservationSystem.Services.Rooms
                 return false;
 
             //room.
+            var updatedRoom = roomDto.MapeOne<Room>();
 
-            repo.Update(room);
+            repo.Update(updatedRoom);
             return true;
         }
 
