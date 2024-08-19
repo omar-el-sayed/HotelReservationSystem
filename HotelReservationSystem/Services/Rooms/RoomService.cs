@@ -7,28 +7,14 @@ using HotelReservationSystem.Services.RoomFacilites;
 
 namespace HotelReservationSystem.Services.Rooms
 {
-    public class RoomService : IRoomService
+    public class RoomService(IGenericRepository<Room> repo, IPictureRoomService pictureRoomService, IRoomFacilityService roomFacilityService) : IRoomService
     {
-        private readonly IGenericRepository<Room> repo;
-        private readonly IPictureRoomService pictureRoomService;
-        private readonly IRoomFacilityService roomFacilityService;
-
-        public RoomService(IGenericRepository<Room> repo, IPictureRoomService pictureRoomService,IRoomFacilityService roomFacilityService)
-        {
-            this.repo = repo;
-            this.pictureRoomService = pictureRoomService;
-            this.roomFacilityService = roomFacilityService;
-        }
-
-        public RoomDTO Add(RoomDTO roomDTO)
+        public int Add(RoomDTO roomDTO)
         {
             var room = roomDTO.MapeOne<Room>();
             repo.Add(room);
             repo.SaveChanges();
-            // need to handle error if RoomPictures is null and RoomFacilities is null 
-            pictureRoomService.AddRange(room.Id, roomDTO.RoomPictures);
-            roomFacilityService.AddRang(room.Id, roomDTO.RoomFacilities);
-            return room.MapeOne<RoomDTO>();
+            return room.Id;
         }
 
         public bool Update(UpdateRoomDto roomDto)
@@ -40,7 +26,6 @@ namespace HotelReservationSystem.Services.Rooms
             //room.
 
             repo.Update(room);
-            repo.SaveChanges();
             return true;
         }
 
@@ -51,7 +36,6 @@ namespace HotelReservationSystem.Services.Rooms
                 return false;
 
             repo.Delete(room);
-            repo.SaveChanges();
             return true;
         }
 
