@@ -24,6 +24,8 @@ namespace HotelReservationSystem.Services.Rooms
             //room.
             var updatedRoom = roomDto.MapeOne<Room>();
             repo.Update(updatedRoom);
+            repo.SaveChanges();
+
             return true;
         }
 
@@ -34,6 +36,8 @@ namespace HotelReservationSystem.Services.Rooms
                 return false;
 
             repo.Delete(room);
+            repo.SaveChanges();
+
             return true;
         }
 
