@@ -1,6 +1,5 @@
 ﻿using HotelReservationSystem.DTOs.Room;
 using HotelReservationSystem.Helpers;
-using HotelReservationSystem.Mediators.Room;
 using HotelReservationSystem.Services.Rooms;
 using HotelReservationSystem.ViewModels.Room;
 using Microsoft.AspNetCore.Mvc;
@@ -9,7 +8,7 @@ namespace HotelReservationSystem.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class RoomController(IRoomMediator roomMediator, IRoomService roomService) : BaseController
+    public class RoomController(/*IRoomMediator roomMediator,*/ IRoomService roomService) : BaseController
     {
         [HttpGet("getall")]
         public IActionResult GetAvailableRooms()
