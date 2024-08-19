@@ -20,11 +20,11 @@ namespace HotelReservationSystem.Mediators.Room
         }
         public void AddRoom(RoomDTO roomDto)
         {
-            int roomid=roomService.Add(roomDto);
+            int roomid = roomService.Add(roomDto);
             // need to handle error if RoomPictures is null and RoomFacilities is null 
-            pictureRoomService.AddRange(roomid,roomDto.RoomPictures);
-            roomFacilityService.AddRang(roomid, roomDto.RoomFacilities);
+            pictureRoomService.AddRange(roomid, roomDto.RoomPictures);
+            roomFacilityService.AddRange(roomid, roomDto.RoomFacilities);
         }
-     }
+    }
 
 }

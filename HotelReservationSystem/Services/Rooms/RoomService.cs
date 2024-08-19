@@ -21,7 +21,6 @@ namespace HotelReservationSystem.Services.Rooms
             if (room is null)
                 return false;
 
-            //room.
             var updatedRoom = roomDto.MapeOne<Room>();
             repo.Update(updatedRoom);
             repo.SaveChanges();

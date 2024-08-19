@@ -16,7 +16,7 @@ namespace HotelReservationSystem.Services.RoomFacilites
             this.repo = repo;
             this.facilityService = facilityService;
         }
-        public void AddRang(int id, IEnumerable<RoomFacilityDTO> roomFacilityDTOs)
+        public void AddRange(int id, IEnumerable<RoomFacilityDTO> roomFacilityDTOs)
         {
             foreach (var roomFacilityDTO in roomFacilityDTOs)
             {
