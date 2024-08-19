@@ -4,6 +4,6 @@ namespace HotelReservationSystem.Mediators.Room
 {
     public interface IRoomMediator
     {
-        void AddRoom(CreateRoomDto roomDto);
+        void AddRoom(RoomDTO roomDto);
     }
 }

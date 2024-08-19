@@ -1,18 +1,30 @@
 ﻿using HotelReservationSystem.DTOs.Room;
 using HotelReservationSystem.Services.PictureRooms;
+using HotelReservationSystem.Services.RoomFacilites;
 using HotelReservationSystem.Services.Rooms;
 
 namespace HotelReservationSystem.Mediators.Room
 {
-    public class RoomMediator(IRoomService roomService, IPictureRoomService pictureRoomService) : IRoomMediator
+
+    public class RoomMediator : IRoomMediator
     {
-        public void AddRoom(CreateRoomDto roomDto)
+        private readonly IRoomService roomService;
+        private readonly IPictureRoomService pictureRoomService;
+        private readonly IRoomFacilityService roomFacilityService;
+
+        public RoomMediator(IRoomService roomService, IPictureRoomService pictureRoomService, IRoomFacilityService roomFacilityService)
         {
-            //roomService.Add();
-
-            //pictureRoomService.AddRange();
-
-
+            this.roomService = roomService;
+            this.pictureRoomService = pictureRoomService;
+            this.roomFacilityService = roomFacilityService;
         }
-    }
+        public void AddRoom(RoomDTO roomDto)
+        {
+            int roomid=roomService.Add(roomDto);
+            // need to handle error if RoomPictures is null and RoomFacilities is null 
+            pictureRoomService.AddRange(roomid,roomDto.RoomPictures);
+            roomFacilityService.AddRang(roomid, roomDto.RoomFacilities);
+        }
+     }
+
 }

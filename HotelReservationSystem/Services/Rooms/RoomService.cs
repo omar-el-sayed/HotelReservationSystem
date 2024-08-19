@@ -9,15 +9,13 @@ namespace HotelReservationSystem.Services.Rooms
 {
     public class RoomService(IGenericRepository<Room> repo, IPictureRoomService pictureRoomService, IRoomFacilityService roomFacilityService) : IRoomService
     {
-        public RoomDTO Add(RoomDTO roomDTO)
+
+        public int Add(RoomDTO roomDTO)
         {
             var room = roomDTO.MapeOne<Room>();
             repo.Add(room);
             repo.SaveChanges();
-            // need to handle error if RoomPictures is null and RoomFacilities is null 
-            pictureRoomService.AddRange(room.Id, roomDTO.RoomPictures);
-            roomFacilityService.AddRang(room.Id, roomDTO.RoomFacilities);
-            return room.MapeOne<RoomDTO>();
+            return room.Id;
         }
 
         public bool Update(UpdateRoomDto roomDto)
@@ -28,7 +26,6 @@ namespace HotelReservationSystem.Services.Rooms
 
             //room.
             var updatedRoom = roomDto.MapeOne<Room>();
-
             repo.Update(updatedRoom);
             return true;
         }
