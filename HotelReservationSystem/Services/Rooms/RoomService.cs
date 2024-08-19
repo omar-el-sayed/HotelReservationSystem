@@ -2,14 +2,11 @@
 using HotelReservationSystem.Helpers;
 using HotelReservationSystem.Models;
 using HotelReservationSystem.Repositories;
-using HotelReservationSystem.Services.PictureRooms;
-using HotelReservationSystem.Services.RoomFacilites;
 
 namespace HotelReservationSystem.Services.Rooms
 {
-    public class RoomService(IGenericRepository<Room> repo, IPictureRoomService pictureRoomService, IRoomFacilityService roomFacilityService) : IRoomService
+    public class RoomService(IGenericRepository<Room> repo) : IRoomService
     {
-
         public int Add(RoomDTO roomDTO)
         {
             var room = roomDTO.MapeOne<Room>();
