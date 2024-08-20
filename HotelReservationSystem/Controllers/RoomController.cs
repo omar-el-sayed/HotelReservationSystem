@@ -2,7 +2,9 @@
 using HotelReservationSystem.Helpers;
 using HotelReservationSystem.Mediators.Room;
 using HotelReservationSystem.Services.Rooms;
-using HotelReservationSystem.ViewModels.Room;
+using HotelReservationSystem.ViewModels;
+using HotelReservationSystem.ViewModels.Rooms
+
 using Microsoft.AspNetCore.Mvc;
 
 namespace HotelReservationSystem.Controllers
@@ -12,35 +14,35 @@ namespace HotelReservationSystem.Controllers
     public class RoomController(IRoomMediator roomMediator, IRoomService roomService) : BaseController
     {
         [HttpGet("getall")]
-        public IActionResult GetAvailableRooms()
+        public ResultViewModel<IEnumerable<RoomViewModel>> GetAvailableRooms()
         {
-            var availableRooms = roomService.GetAvailableRoom();
-            return Ok(availableRooms);
+            var availableRooms = roomService.GetAvailableRoom().AsQueryable().Map<RoomViewModel>();
+            return ResultViewModel<RoomViewModel>.Success<IEnumerable<RoomViewModel>>(availableRooms);
         }
 
         [HttpPost("add")]
-        public IActionResult AddRoom(CreateRoomViewModel roomVM)
+        public ResultViewModel<int> AddRoom(CreateRoomViewModel roomVM)
         {
             roomMediator.AddRoom(roomVM.MapeOne<RoomDTO>());
-            return Ok();
+            return ResultViewModel<int>.Success(roomVM.Id,$"Room Is Added Successfuly with id:{roomVM.Id}");
         }
 
         [HttpPut("edit")]
-        public IActionResult UpdateRoom(UpdateRoomViewModel roomVM)
+        public ResultViewModel<int> UpdateRoom(UpdateRoomViewModel roomVM)
         {
             if (roomService.Update(roomVM.MapeOne<UpdateRoomDto>()))
-                return Ok();
+                return ResultViewModel<int>.Success(roomVM.Id, $"Room  with Id:{roomVM.Id} is Updated Successfuly");
             else
-                return BadRequest();
+                return ResultViewModel<int>.Failure(ErrorCode.FailedUpdateRoom, $"Faild To Update Room with id:{roomVM.Id}");
         }
 
         [HttpDelete("delete/{id}")]
-        public IActionResult DeleteRoom(int id)
+        public ResultViewModel<int> DeleteRoom(int id)
         {
             if (roomService.Delete(id))
-                return Ok();
+                return ResultViewModel<int>.Success(id, $"Room with Id:{id} is Deleted Successfuly");
             else
-                return BadRequest();
+                return ResultViewModel<int>.Failure(ErrorCode.FailedDeleteRoom, $"There's an error occured while deleting room with id: {id}");
         }
     }
 }

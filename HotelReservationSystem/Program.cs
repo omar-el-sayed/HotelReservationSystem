@@ -4,7 +4,7 @@ using AutoMapper;
 using HotelReservationSystem;
 using HotelReservationSystem.Helpers;
 using HotelReservationSystem.Middlewares;
-using HotelReservationSystem.Profiles;
+using HotelReservationSystem.ViewModels.Room;
 
 var builder = WebApplication.CreateBuilder(args);
 

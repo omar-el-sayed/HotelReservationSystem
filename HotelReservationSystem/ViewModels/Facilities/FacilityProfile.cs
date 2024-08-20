@@ -2,9 +2,9 @@
 using HotelReservationSystem.DTOs;
 using HotelReservationSystem.Models;
 
-namespace HotelReservationSystem.Profiles
+namespace HotelReservationSystem.ViewModels.Facilities
 {
-    public class FacilityProfile :Profile
+    public class FacilityProfile : Profile
     {
         public FacilityProfile()
         {

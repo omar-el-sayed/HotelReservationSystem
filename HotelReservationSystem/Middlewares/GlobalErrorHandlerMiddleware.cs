@@ -1,4 +1,7 @@
-﻿namespace HotelReservationSystem.Middlewares
+﻿using HotelReservationSystem.Exceptions;
+using HotelReservationSystem.ViewModels;
+
+namespace HotelReservationSystem.Middlewares
 {
     public class GlobalErrorHandlerMiddleware(RequestDelegate _next)
     {
@@ -10,7 +13,15 @@
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                string message = "";
+                ErrorCode errorCode = ErrorCode.UnKnown;
+                if(ex is BusinessException businessException)
+                {
+                    message = businessException.Message;
+                    errorCode=businessException.errorCode;
+                }
+                var result =ResultViewModel<bool>.Failure(errorCode, message);
+                await context.Response.WriteAsJsonAsync(result);
             }
         }
     }

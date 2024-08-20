@@ -1,6 +1,6 @@
 ﻿using HotelReservationSystem.DTOs;
 
-namespace HotelReservationSystem.ViewModels.Room
+namespace HotelReservationSystem.ViewModels.Rooms
 {
     public class UpdateRoomViewModel
     {
