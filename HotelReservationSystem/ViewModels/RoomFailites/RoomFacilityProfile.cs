@@ -2,9 +2,9 @@
 using HotelReservationSystem.DTOs;
 using HotelReservationSystem.Models;
 
-namespace HotelReservationSystem.Profiles
+namespace HotelReservationSystem.ViewModels.RoomFailites
 {
-    public class RoomFacilityProfile :Profile
+    public class RoomFacilityProfile : Profile
     {
         public RoomFacilityProfile()
         {
