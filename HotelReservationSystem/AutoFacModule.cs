@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using HotelReservationSystem.Data;
+using HotelReservationSystem.Mediators.Room;
 using HotelReservationSystem.Repositories;
 using HotelReservationSystem.Services.Facilities;
 using HotelReservationSystem.Services.RoomFacilites;
@@ -31,6 +32,7 @@ namespace HotelReservationSystem
             builder.RegisterAssemblyTypes(typeof(IFacilityService).Assembly).AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterAssemblyTypes(typeof(IRoomFacilityService).Assembly).AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterAssemblyTypes(typeof(IRoomService).Assembly).AsImplementedInterfaces().InstancePerLifetimeScope();
+            builder.RegisterAssemblyTypes(typeof(IRoomMediator).Assembly).AsImplementedInterfaces().InstancePerLifetimeScope();
         }
     }
 }
