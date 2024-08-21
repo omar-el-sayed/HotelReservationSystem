@@ -7,7 +7,7 @@
         public string Message { get; set; }
         public ErrorCode errorCode { get; set; }
 
-        public static ResultViewModel<T>Success<T>(T data,string message="")
+        public static ResultViewModel<T> Success(T data, string message = "")
         {
             return new ResultViewModel<T>
             {
@@ -17,13 +17,13 @@
                 errorCode = ErrorCode.None
             };
         }
-        public static ResultViewModel<T>Failure(ErrorCode errorCode,string message)
+        public static ResultViewModel<T> Failure(ErrorCode errorCode, string message)
         {
             return new ResultViewModel<T>
             {
-                Data=default,
+                Data = default,
                 Message = message,
-                IsSuccess=false,
+                IsSuccess = false,
                 errorCode = errorCode
             };
         }

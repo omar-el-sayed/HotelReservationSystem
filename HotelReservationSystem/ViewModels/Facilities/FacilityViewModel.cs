@@ -1,6 +1,6 @@
-﻿namespace HotelReservationSystem.DTOs
+﻿namespace HotelReservationSystem.ViewModels.Facilities
 {
-    public class FacilityDTO
+    public class FacilityViewModel
     {
         public string Name { get; set; }
         public string Description { get; set; }

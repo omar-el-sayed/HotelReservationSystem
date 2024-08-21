@@ -6,19 +6,15 @@ using HotelReservationSystem.Services.Rooms;
 namespace HotelReservationSystem.Mediators.Room
 {
 
-    public class RoomMediator : IRoomMediator
+    public class RoomMediator(IRoomService roomService, IPictureRoomService pictureRoomService, IRoomFacilityService roomFacilityService) : IRoomMediator
     {
-        private readonly IRoomService roomService;
-        private readonly IPictureRoomService pictureRoomService;
-        private readonly IRoomFacilityService roomFacilityService;
+        public IEnumerable<RoomDTO> GetAvailableRooms()
+            => roomService.GetAvailableRooms();
 
-        public RoomMediator(IRoomService roomService, IPictureRoomService pictureRoomService, IRoomFacilityService roomFacilityService)
-        {
-            this.roomService = roomService;
-            this.pictureRoomService = pictureRoomService;
-            this.roomFacilityService = roomFacilityService;
-        }
-        public void AddRoom(RoomDTO roomDto)
+        public RoomDTO GetById(int id)
+            => roomService.GetById(id);
+
+        public void AddRoom(CreateRoomDto roomDto)
         {
             int roomid = roomService.Add(roomDto);
 
@@ -28,6 +24,12 @@ namespace HotelReservationSystem.Mediators.Room
             if (roomDto.RoomFacilities is not null && roomDto.RoomFacilities.Count > 0)
                 roomFacilityService.AddRange(roomid, roomDto.RoomFacilities);
         }
+
+        public bool Update(UpdateRoomDto roomDto)
+            => roomService.Update(roomDto);
+
+        public bool Delete(int id)
+            => roomService.Delete(id);
     }
 
 }

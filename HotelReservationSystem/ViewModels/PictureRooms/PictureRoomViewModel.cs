@@ -1,6 +1,6 @@
-﻿namespace HotelReservationSystem.DTOs
+﻿namespace HotelReservationSystem.ViewModels.PictureRooms
 {
-    public class PictureRoomDTO
+    public class PictureRoomViewModel
     {
         public string ImageURL { get; set; }
         public string Description { get; set; }

@@ -1,6 +1,4 @@
-﻿using HotelReservationSystem.Models;
-
-namespace HotelReservationSystem.DTOs.Room
+﻿namespace HotelReservationSystem.DTOs.Room
 {
     public class RoomDTO
     {
@@ -14,6 +12,5 @@ namespace HotelReservationSystem.DTOs.Room
         public int RoomNumber { get; set; }
         public List<PictureRoomDTO>? RoomPictures { get; set; }
         public List<RoomFacilityDTO>? RoomFacilities { get; set; }
-        //public List<RoomOffer>? RoomOffers { get; set; }
     }
 }

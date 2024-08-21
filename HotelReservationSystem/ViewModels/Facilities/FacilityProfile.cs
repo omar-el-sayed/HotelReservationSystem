@@ -9,6 +9,7 @@ namespace HotelReservationSystem.ViewModels.Facilities
         public FacilityProfile()
         {
             CreateMap<Facility, FacilityDTO>().ReverseMap();
+            CreateMap<FacilityDTO, FacilityViewModel>().ReverseMap();
         }
     }
 }

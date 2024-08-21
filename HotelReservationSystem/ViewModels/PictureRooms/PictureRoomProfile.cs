@@ -10,6 +10,7 @@ namespace HotelReservationSystem.ViewModels.PictureRooms
         {
             CreateMap<PictureRoom, PictureRoomDTO>().ReverseMap()
                 .ForMember(dst => dst.RoomId, opt => opt.Ignore());
+            CreateMap<PictureRoomDTO, PictureRoomViewModel>().ReverseMap();
         }
     }
 }

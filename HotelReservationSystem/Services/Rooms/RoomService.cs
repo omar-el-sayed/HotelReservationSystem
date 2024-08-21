@@ -7,7 +7,19 @@ namespace HotelReservationSystem.Services.Rooms
 {
     public class RoomService(IGenericRepository<Room> repo) : IRoomService
     {
-        public int Add(RoomDTO roomDTO)
+        public IEnumerable<RoomDTO> GetAvailableRooms()
+        {
+            var rooms = repo.Get(r => r.AvailableStatus == AvailableStatus.available);
+            return rooms.Map<RoomDTO>();
+        }
+
+        public RoomDTO GetById(int id)
+        {
+            var room = repo.GetById(id);
+            return room.MapeOne<RoomDTO>();
+        }
+
+        public int Add(CreateRoomDto roomDTO)
         {
             var room = roomDTO.MapeOne<Room>();
             repo.Add(room);
@@ -38,18 +50,6 @@ namespace HotelReservationSystem.Services.Rooms
             repo.SaveChanges();
 
             return true;
-        }
-
-        public IEnumerable<RoomDTO> GetAvailableRoom()
-        {
-            var rooms = repo.Get(r => r.AvailableStatus == AvailableStatus.available);
-            return rooms.Map<RoomDTO>();
-        }
-
-        public RoomDTO GetById(int id)
-        {
-            var room = repo.GetById(id);
-            return room.MapeOne<RoomDTO>();
         }
     }
 }
