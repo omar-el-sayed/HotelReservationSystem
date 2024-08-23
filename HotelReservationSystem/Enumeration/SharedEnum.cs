@@ -10,9 +10,9 @@ public enum RoomType
 
 public enum ErrorCode
 {
-    None=0,
-    UnKnown=1,
-
-    FailedUpdateRoom=10,
-    FailedDeleteRoom
+    None = 0,
+    UnKnown = 1,
+    FailedUpdateRoom = 10,
+    FailedDeleteRoom,
+    PaymentFailure = 1000
 }

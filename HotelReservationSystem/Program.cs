@@ -4,7 +4,9 @@ using AutoMapper;
 using HotelReservationSystem;
 using HotelReservationSystem.Helpers;
 using HotelReservationSystem.Middlewares;
-using HotelReservationSystem.ViewModels.Room;
+using HotelReservationSystem.ViewModels.Payments;
+using HotelReservationSystem.ViewModels.Rooms;
+using Stripe;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,7 +24,9 @@ builder.Host.ConfigureContainer<ContainerBuilder>(containerbuilder =>
     containerbuilder.RegisterModule(new AutoFacModule(builder.Configuration));
 });
 
-builder.Services.AddAutoMapper(typeof(RoomProfile));
+builder.Services.AddAutoMapper(typeof(RoomProfile), typeof(PaymentProfile));
+
+StripeConfiguration.ApiKey = builder.Configuration["Stripe:SecretKey"];
 
 var app = builder.Build();
 

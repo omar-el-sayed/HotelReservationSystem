@@ -20,7 +20,7 @@ namespace HotelReservationSystem.Services.RoomFacilites
         {
             foreach (var roomFacilityDTO in roomFacilityDTOs)
             {
-                var facility = facilityService.Add(roomFacilityDTO.facility);
+                var facility = facilityService.Add(roomFacilityDTO.Facility);
                 var roomfacility = roomFacilityDTO.MapeOne<RoomFacility>();
                 roomfacility.Id = id;
                 repo.Add(roomfacility);
