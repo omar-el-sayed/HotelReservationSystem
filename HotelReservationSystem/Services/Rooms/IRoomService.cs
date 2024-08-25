@@ -9,5 +9,6 @@ namespace HotelReservationSystem.Services.Rooms
         int Add(CreateRoomDto roomDTO);
         bool Update(UpdateRoomDto roomDto);
         bool Delete(int id);
+        RoomDTO SearchRoom(int RoomNumber);
     }
 }

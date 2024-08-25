@@ -2,11 +2,17 @@
 using HotelReservationSystem.Helpers;
 using HotelReservationSystem.Models;
 using HotelReservationSystem.Repositories;
+using System.Diagnostics.Contracts;
 
 namespace HotelReservationSystem.Services.Rooms
 {
-    public class RoomService(IGenericRepository<Room> repo) : IRoomService
+    public class RoomService: IRoomService
     {
+        public IGenericRepository<Room> repo { get; } 
+        public RoomService(IGenericRepository<Room> repo)
+        {
+            this.repo = repo;
+        }
         public IEnumerable<RoomDTO> GetAvailableRooms()
         {
             var rooms = repo.Get(r => r.AvailableStatus == AvailableStatus.available);
@@ -50,6 +56,11 @@ namespace HotelReservationSystem.Services.Rooms
             repo.SaveChanges();
 
             return true;
+        }
+        public RoomDTO SearchRoom(int RoomNumber)
+        {
+            RoomDTO Room = repo.Get(r => r.RoomNumber == RoomNumber).MapeOne<RoomDTO>();
+            return Room;
         }
     }
 }
