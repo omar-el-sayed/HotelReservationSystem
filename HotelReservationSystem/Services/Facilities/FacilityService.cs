@@ -1,4 +1,5 @@
-﻿using HotelReservationSystem.DTOs;
+﻿using HotelReservationSystem.DTOs.Facility;
+using HotelReservationSystem.DTOs.Room;
 using HotelReservationSystem.Helpers;
 using HotelReservationSystem.Models;
 using HotelReservationSystem.Repositories;
@@ -26,6 +27,39 @@ namespace HotelReservationSystem.Services.Facilities
             repo.SaveChanges();
             return facility;
         }
+
+        public bool Delete(int id)
+        {
+            var facility = repo.GetByIdWithTracking(id);
+            if (facility is null)
+                return false;
+
+            repo.Delete(facility);
+            repo.SaveChanges();
+
+            return true;
+        }
+
+        public IEnumerable<FacilityDTO> GetAvailableFacilities()
+        {
+            var facilities = repo.Get(f=> f.IsAvailable == true);
+            var facilitiesDto = facilities.Map<FacilityDTO>();
+            return facilitiesDto;
+
+        }
+
+        public bool Update(UpdateFacilityDto facilityDto)
+        {
+            var facility = repo.GetByIdWithTracking(facilityDto.Id);
+            if (facility is null)
+                return false;
+
+            var updatedFacility = facilityDto.MapeOne<Facility>();
+            repo.Update(updatedFacility);
+            repo.SaveChanges();
+            return true;
+        }
+
         public bool ValidateFacilityExisiting(string name)
         {
             var ExisitingFacility=  repo.Get(f => f.Name == name).FirstOrDefault();

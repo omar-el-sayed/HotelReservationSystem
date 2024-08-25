@@ -14,5 +14,7 @@ public enum ErrorCode
     UnKnown = 1,
     FailedUpdateRoom = 10,
     FailedDeleteRoom,
+    FailedUpdateFacility = 20,
+    FailedDeleteFacility,
     PaymentFailure = 1000
 }
