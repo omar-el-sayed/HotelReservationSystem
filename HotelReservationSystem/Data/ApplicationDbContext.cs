@@ -68,7 +68,6 @@ namespace HotelReservationSystem.Data
             #region Room
             modelBuilder.Entity<Room>().Property(r => r.RoomType).HasColumnType("varchar(10)");
             modelBuilder.Entity<Room>().Property(r => r.Price).HasColumnType("money");
-            modelBuilder.Entity<Room>().Property(r => r.AvailableStatus).HasColumnType("varchar(20)");
             #endregion
 
         }

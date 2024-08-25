@@ -18,8 +18,8 @@ namespace HotelReservationSystem.Mediators.Room
             this.roomFacilityService = roomFacilityService;
         }
 
-        public IEnumerable<RoomDTO> GetAvailableRooms()
-            => roomService.GetAvailableRooms();
+        //public IEnumerable<RoomDTO> GetAvailableRooms()
+        //    => roomService.GetAvailableRooms();
 
         public RoomDTO GetById(int id)
             => roomService.GetById(id);

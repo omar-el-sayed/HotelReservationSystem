@@ -4,7 +4,7 @@ namespace HotelReservationSystem.Mediators.Room
 {
     public interface IRoomMediator
     {
-        IEnumerable<RoomDTO> GetAvailableRooms();
+        //IEnumerable<RoomDTO> GetAvailableRooms();
         RoomDTO GetById(int id);
         void AddRoom(CreateRoomDto roomDto);
         bool Update(UpdateRoomDto roomDto);
