@@ -1,6 +1,8 @@
-﻿namespace HotelReservationSystem.ViewModels.Facilities
+﻿using HotelReservationSystem.Models;
+
+namespace HotelReservationSystem.DTOs.Facility
 {
-    public class FacilityViewModel
+    public class UpdateFacilityDto
     {
         public int Id { get; set; }
         public string Name { get; set; }

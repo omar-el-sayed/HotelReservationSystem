@@ -1,4 +1,6 @@
-﻿namespace HotelReservationSystem.DTOs
+﻿using HotelReservationSystem.DTOs.Facility;
+
+namespace HotelReservationSystem.DTOs
 {
     public class RoomFacilityDTO
     {
