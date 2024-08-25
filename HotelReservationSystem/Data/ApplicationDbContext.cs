@@ -11,6 +11,9 @@ namespace HotelReservationSystem.Data
         public DbSet<Room> Rooms { get; set; }
         public DbSet<RoomFacility> RoomFacilities { get; set; }
         public DbSet<RoomOffer> RoomOffers { get; set; }
+        public DbSet<Reservation> Reservations { get; set; }
+        public DbSet<Invoice> Invoices { get; set; }
+        public DbSet<FeedBack> FeedBacks { get; set; }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
@@ -34,6 +37,19 @@ namespace HotelReservationSystem.Data
 
             modelBuilder.Entity<PictureRoom>().HasOne(pr => pr.Room)
                 .WithMany(r => r.RoomPictures).HasForeignKey(pr => pr.RoomId);
+            #region Reservations_Relations
+            modelBuilder.Entity<Reservation>()
+                .HasMany(r => r.Rooms)
+                .WithMany(r => r.Reservations);
+            modelBuilder.Entity<Reservation>()
+                .HasOne(r => r.Invoice)
+                .WithMany(r => r.Reservations)
+                .HasForeignKey(r => r.InvoiceId);
+            //modelBuilder.Entity<Reservation>()
+            //    .HasOne(r => r.Payment)
+            //    .WithMany(r => r.Reservations)
+            //    .HasForeignKey(r => r.);
+            #endregion
             #endregion
 
             #region Facility
@@ -54,6 +70,7 @@ namespace HotelReservationSystem.Data
             modelBuilder.Entity<Room>().Property(r => r.Price).HasColumnType("money");
             modelBuilder.Entity<Room>().Property(r => r.AvailableStatus).HasColumnType("varchar(20)");
             #endregion
+
         }
     }
 }
