@@ -11,12 +11,12 @@ namespace HotelReservationSystem.Controllers
     [ApiController]
     public class RoomController(IRoomMediator roomMediator) : BaseController
     {
-        [HttpGet("getavailable")]
-        public ResultViewModel<IEnumerable<RoomViewModel>> GetAvailableRooms()
-        {
-            var availableRooms = roomMediator.GetAvailableRooms().AsQueryable().Map<RoomViewModel>();
-            return ResultViewModel<IEnumerable<RoomViewModel>>.Success(availableRooms);
-        }
+        //[HttpGet("getavailable")]
+        //public ResultViewModel<IEnumerable<RoomViewModel>> GetAvailableRooms()
+        //{
+        //    var availableRooms = roomMediator.GetAvailableRooms().AsQueryable().Map<RoomViewModel>();
+        //    return ResultViewModel<IEnumerable<RoomViewModel>>.Success(availableRooms);
+        //}
 
         [HttpGet("getbyid/{id}")]
         public ResultViewModel<RoomViewModel> GetById(int id)
