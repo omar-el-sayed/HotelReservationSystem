@@ -4,7 +4,7 @@ namespace HotelReservationSystem.Services.Rooms
 {
     public interface IRoomService
     {
-        IEnumerable<RoomDTO> GetAvailableRooms();
+        //IEnumerable<RoomDTO> GetAvailableRooms();
         RoomDTO GetById(int id);
         int Add(CreateRoomDto roomDTO);
         bool Update(UpdateRoomDto roomDto);

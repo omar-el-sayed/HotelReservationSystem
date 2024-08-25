@@ -14,7 +14,6 @@
         public int NumOfBed { get; set; }
         public int MaxOccupancy { get; set; }
         public double RoomSize { get; set; }
-        public AvailableStatus AvailableStatus { get; set; }
         public int RoomNumber { get; set; }
         public List<PictureRoom>? RoomPictures { get; set; }
         public List<RoomFacility>? RoomFacilities { get; set; }

@@ -13,11 +13,11 @@ namespace HotelReservationSystem.Services.Rooms
         {
             this.repo = repo;
         }
-        public IEnumerable<RoomDTO> GetAvailableRooms()
-        {
-            var rooms = repo.Get(r => r.AvailableStatus == AvailableStatus.available);
-            return rooms.Map<RoomDTO>();
-        }
+        //public IEnumerable<RoomDTO> GetAvailableRooms()
+        //{
+        //    var rooms = repo.Get(r => r.AvailableStatus == AvailableStatus.available);
+        //    return rooms.Map<RoomDTO>();
+        //}
 
         public RoomDTO GetById(int id)
         {
