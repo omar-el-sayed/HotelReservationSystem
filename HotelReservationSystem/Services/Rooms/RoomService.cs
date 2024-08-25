@@ -24,6 +24,7 @@ namespace HotelReservationSystem.Services.Rooms
             var room = roomDTO.MapeOne<Room>();
             repo.Add(room);
             repo.SaveChanges();
+
             return room.Id;
         }
 
