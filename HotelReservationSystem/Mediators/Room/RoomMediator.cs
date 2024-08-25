@@ -6,8 +6,18 @@ using HotelReservationSystem.Services.Rooms;
 namespace HotelReservationSystem.Mediators.Room
 {
 
-    public class RoomMediator(IRoomService roomService, IPictureRoomService pictureRoomService, IRoomFacilityService roomFacilityService) : IRoomMediator
+    public class RoomMediator : IRoomMediator
     {
+        private readonly IRoomService roomService;
+        private readonly IPictureRoomService pictureRoomService;
+        private readonly IRoomFacilityService roomFacilityService;
+
+        public RoomMediator(IRoomService roomService, IPictureRoomService pictureRoomService, IRoomFacilityService roomFacilityService) {
+            this.roomService = roomService;
+            this.pictureRoomService = pictureRoomService;
+            this.roomFacilityService = roomFacilityService;
+        }
+
         public IEnumerable<RoomDTO> GetAvailableRooms()
             => roomService.GetAvailableRooms();
 
@@ -30,6 +40,9 @@ namespace HotelReservationSystem.Mediators.Room
 
         public bool Delete(int id)
             => roomService.Delete(id);
+
+        public RoomDTO SearchRoom(int RoomNumber)
+            =>roomService.SearchRoom(RoomNumber);
     }
 
 }
