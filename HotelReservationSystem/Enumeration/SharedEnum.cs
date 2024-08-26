@@ -12,16 +12,19 @@ public enum ErrorCode
 {
     None = 0,
     UnKnown = 1,
+    DoesNotExist,
     FailedUpdateRoom = 10,
     FailedDeleteRoom,
     FailedUpdateFacility = 20,
     FailedDeleteFacility,
+    FaildAddFacility,
     PaymentFailure = 1000
 }
 public enum ReservationStatus
 {
-    Pending =0,
-    Confirmed = 1,
-    Cancelled = 2,
-    Invoiced = 3,  
+    Available=0,
+    Pending =1,
+    Confirmed ,
+    Cancelled ,
+    Invoiced ,
 }
