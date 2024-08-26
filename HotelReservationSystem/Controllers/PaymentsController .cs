@@ -35,11 +35,7 @@ namespace HotelReservationSystem.Controllers
         {
             var invoice = await paymentMediator.CreateInvoice(payment.MapeOne<PaymentDto>());
 
-            var invoiceVM = new InvoiceViewModel
-            {
-                HostedInvoiceUrl = invoice.HostedInvoiceUrl,
-                InvoicePdf = invoice.InvoicePdf
-            };
+            var invoiceVM = invoice.MapeOne<InvoiceViewModel>();
 
             return ResultViewModel<InvoiceViewModel>.Success(invoiceVM, "Invoice created successfully");
         }

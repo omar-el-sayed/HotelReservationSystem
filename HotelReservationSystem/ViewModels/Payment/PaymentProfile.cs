@@ -11,6 +11,7 @@ namespace HotelReservationSystem.ViewModels.Payments
         {
             CreateMap<PaymentViewModel, PaymentDto>().ReverseMap();
             CreateMap<Charge, ChargeViewModel>().ReverseMap();
+            CreateMap<Invoice, InvoiceViewModel>().ReverseMap();
             //CreateMap<PaymentDto, Payment>().ReverseMap();
         }
     }
