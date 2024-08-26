@@ -1,14 +1,9 @@
-﻿
-using HotelReservationSystem.ViewModels;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using HotelReservationSystem.Services.Facilities;
-using HotelReservationSystem.ViewModels.Facilities;
+﻿using HotelReservationSystem.DTOs.Facility;
 using HotelReservationSystem.Helpers;
-using HotelReservationSystem.DTOs.Facility;
-using HotelReservationSystem.DTOs.Room;
-using HotelReservationSystem.Mediators.Room;
-using HotelReservationSystem.ViewModels.Rooms;
+using HotelReservationSystem.Services.Facilities;
+using HotelReservationSystem.ViewModels;
+using HotelReservationSystem.ViewModels.Facilities;
+using Microsoft.AspNetCore.Mvc;
 
 namespace HotelReservationSystem.Controllers
 {
@@ -17,8 +12,9 @@ namespace HotelReservationSystem.Controllers
     public class FacilityController : ControllerBase
     {
         IFacilityService facilityService;
-        public FacilityController(IFacilityService facilityService) { 
-        this.facilityService = facilityService;
+        public FacilityController(IFacilityService facilityService)
+        {
+            this.facilityService = facilityService;
         }
 
         [HttpGet("getFacilities")]
@@ -52,9 +48,5 @@ namespace HotelReservationSystem.Controllers
             else
                 return ResultViewModel<int>.Failure(ErrorCode.FailedDeleteFacility, $"There's an error occured while deleting facility with id: {id}");
         }
-
-
-
-
     }
 }
