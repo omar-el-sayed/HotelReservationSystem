@@ -1,5 +1,4 @@
-﻿using Autofac.Core.Lifetime;
-using HotelReservationSystem.Data;
+﻿using HotelReservationSystem.Data;
 
 namespace HotelReservationSystem.Middlewares
 {
@@ -8,12 +7,13 @@ namespace HotelReservationSystem.Middlewares
         private readonly RequestDelegate next;
         private readonly ApplicationDbContext context;
 
-        public TransactionHandlerMiddleware(RequestDelegate _next, ApplicationDbContext context) {
+        public TransactionHandlerMiddleware(RequestDelegate _next, ApplicationDbContext context)
+        {
             next = _next;
             this.context = context;
-
         }
-        public async Task invokeAsync(HttpContext httpContext)
+
+        public async Task InvokeAsync(HttpContext httpContext)
         {
             var method = httpContext.Request.Method;
             if (method.ToUpper() != "GET")
@@ -24,11 +24,11 @@ namespace HotelReservationSystem.Middlewares
                     await next(httpContext);
                     Transaction.Commit();
                 }
-                catch (Exception ex) {
+                catch (Exception ex)
+                {
                     Transaction.Rollback();
                     throw;
                 }
-
             }
         }
     }

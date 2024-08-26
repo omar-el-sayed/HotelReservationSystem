@@ -76,7 +76,7 @@ namespace HotelReservationSystem.Data
             #endregion
 
             #region Resservation
-            modelBuilder.Entity<Reservation>().Property(r => r.Status).HasColumnType("Nvarchar(10)"); 
+            modelBuilder.Entity<Reservation>().Property(r => r.Status).HasColumnType("Nvarchar(10)");
             #endregion
 
         }
