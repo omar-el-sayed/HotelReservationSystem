@@ -18,13 +18,14 @@ namespace HotelReservationSystem.Services.RoomFacilites
         }
         public void AddRange(int id, IEnumerable<RoomFacilityDTO> roomFacilityDTOs)
         {
-            foreach (var roomFacilityDTO in roomFacilityDTOs)
-            {
-                var facility = facilityService.Add(roomFacilityDTO.Facility);
-                var roomfacility = roomFacilityDTO.MapeOne<RoomFacility>();
-                roomfacility.Id = id;
-                repo.Add(roomfacility);
-            }
+            // this wrong behavior
+            //foreach (var roomFacilityDTO in roomFacilityDTOs)
+            //{
+            //    var facility = facilityService.Add(roomFacilityDTO.Facility);
+            //    var roomfacility = roomFacilityDTO.MapeOne<RoomFacility>();
+            //    roomfacility.Id = id;
+            //    repo.Add(roomfacility);
+            //}
             repo.SaveChanges();
         }
     }

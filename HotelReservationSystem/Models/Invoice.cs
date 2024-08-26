@@ -4,7 +4,7 @@
     {
         public DateTime InvoiceDate { get; set; }   
         public decimal InvoiceAmount { get; set; }
-        public int ReservationID { get; set; } 
-        public List<Reservation> Reservations { get; set; }
+        public int? ReservationID { get; set; } 
+        public List<Reservation>? Reservations { get; set; }
     }
 }

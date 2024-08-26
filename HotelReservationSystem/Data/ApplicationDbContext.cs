@@ -37,6 +37,7 @@ namespace HotelReservationSystem.Data
 
             modelBuilder.Entity<PictureRoom>().HasOne(pr => pr.Room)
                 .WithMany(r => r.RoomPictures).HasForeignKey(pr => pr.RoomId);
+
             #region Reservations_Relations
             modelBuilder.Entity<Reservation>()
                 .HasMany(r => r.Rooms)
@@ -45,6 +46,10 @@ namespace HotelReservationSystem.Data
                 .HasOne(r => r.Invoice)
                 .WithMany(r => r.Reservations)
                 .HasForeignKey(r => r.InvoiceId);
+            // relation between payment and reservaion 
+            // and customer
+            //modelBuilder.Entity<Reservation>().HasOne(r=>r.Payment)
+            //    .WithMany(r=>r.resvesions)
             //modelBuilder.Entity<Reservation>()
             //    .HasOne(r => r.Payment)
             //    .WithMany(r => r.Reservations)
@@ -68,6 +73,10 @@ namespace HotelReservationSystem.Data
             #region Room
             modelBuilder.Entity<Room>().Property(r => r.RoomType).HasColumnType("varchar(10)");
             modelBuilder.Entity<Room>().Property(r => r.Price).HasColumnType("money");
+            #endregion
+
+            #region Resservation
+            modelBuilder.Entity<Reservation>().Property(r => r.Status).HasColumnType("Nvarchar(10)"); 
             #endregion
 
         }

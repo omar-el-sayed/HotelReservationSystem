@@ -2,6 +2,7 @@
 using HotelReservationSystem.Services.PictureRooms;
 using HotelReservationSystem.Services.RoomFacilites;
 using HotelReservationSystem.Services.Rooms;
+using Microsoft.Identity.Client;
 
 namespace HotelReservationSystem.Mediators.Room
 {
@@ -34,7 +35,6 @@ namespace HotelReservationSystem.Mediators.Room
             if (roomDto.RoomFacilities is not null && roomDto.RoomFacilities.Count > 0)
                 roomFacilityService.AddRange(roomid, roomDto.RoomFacilities);
         }
-
         public bool Update(UpdateRoomDto roomDto)
             => roomService.Update(roomDto);
 

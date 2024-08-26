@@ -1,5 +1,6 @@
 ﻿using HotelReservationSystem.DTOs.Facility;
 using HotelReservationSystem.DTOs.Room;
+using HotelReservationSystem.Exceptions;
 using HotelReservationSystem.Helpers;
 using HotelReservationSystem.Models;
 using HotelReservationSystem.Repositories;
@@ -17,11 +18,8 @@ namespace HotelReservationSystem.Services.Facilities
 
         public Facility Add(FacilityDTO facilityDTO)
         {
-            bool Exisited = ValidateFacilityExisiting(facilityDTO.Name);
-            // need to handle this error using errorcode and handle exception
-            if (Exisited)
-                throw new InvalidOperationException("A facility with this name already exists.");
-
+            if (facilityDTO == null)
+                throw new BusinessException(ErrorCode.FaildAddFacility, "Facility data must not be null");
             var facility = facilityDTO.MapeOne<Facility>();
             repo.Add(facility);
             repo.SaveChanges();
@@ -32,7 +30,7 @@ namespace HotelReservationSystem.Services.Facilities
         {
             var facility = repo.GetByIdWithTracking(id);
             if (facility is null)
-                return false;
+                throw new BusinessException(ErrorCode.DoesNotExist, $"Facility with id {id} Not Exist ");
 
             repo.Delete(facility);
             repo.SaveChanges();
@@ -42,9 +40,8 @@ namespace HotelReservationSystem.Services.Facilities
 
         public IEnumerable<FacilityDTO> GetAvailableFacilities()
         {
-            var facilities = repo.Get(f=> f.IsAvailable == true);
-            var facilitiesDto = facilities.Map<FacilityDTO>();
-            return facilitiesDto;
+            var facilities = repo.Get(f=> f.IsAvailable == true).Map<FacilityDTO>();
+            return facilities;
 
         }
 
@@ -52,7 +49,7 @@ namespace HotelReservationSystem.Services.Facilities
         {
             var facility = repo.GetByIdWithTracking(facilityDto.Id);
             if (facility is null)
-                return false;
+                throw new BusinessException(ErrorCode.DoesNotExist, $"Facility with id {facilityDto.Id} Not Exist ");
 
             var updatedFacility = facilityDto.MapeOne<Facility>();
             repo.Update(updatedFacility);
@@ -60,14 +57,5 @@ namespace HotelReservationSystem.Services.Facilities
             return true;
         }
 
-        public bool ValidateFacilityExisiting(string name)
-        {
-            var ExisitingFacility=  repo.Get(f => f.Name == name).FirstOrDefault();
-            bool Exisited;
-            if (ExisitingFacility != null)
-                Exisited = true;
-            else Exisited = false;
-            return Exisited;
-        }
     }
 }
