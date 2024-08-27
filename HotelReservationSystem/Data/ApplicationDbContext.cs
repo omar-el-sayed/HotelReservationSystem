@@ -42,9 +42,9 @@ namespace HotelReservationSystem.Data
                 .WithMany(r => r.RoomPictures).HasForeignKey(pr => pr.RoomId);
 
             #region Reservations_Relations
-            modelBuilder.Entity<Reservation>()
-                .HasMany(r => r.Rooms)
-                .WithMany(r => r.Reservations);
+            //modelBuilder.Entity<Reservation>()
+            //    .HasMany(r => r.Rooms)
+            //    .WithMany(r => r.Reservations);
             modelBuilder.Entity<Reservation>()
                 .HasOne(r => r.Invoice)
                 .WithMany(r => r.Reservations)

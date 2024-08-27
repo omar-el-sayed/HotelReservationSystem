@@ -4,6 +4,7 @@ namespace HotelReservationSystem.Mediators.Reservation
 {
     public interface IReservationMediator
     {
-        List<RoomDTO> GetAvailableRooms();
+        List<RoomDTO> GetAvailableRooms(DateTime ReservationDate);
+
     }
 }

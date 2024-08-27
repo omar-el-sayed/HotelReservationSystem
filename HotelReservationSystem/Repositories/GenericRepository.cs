@@ -5,8 +5,13 @@ using System.Linq.Expressions;
 
 namespace HotelReservationSystem.Repositories;
 
-public class GenericRepository<T>(ApplicationDbContext _context) : IGenericRepository<T> where T : BaseEntity
+public class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity
 {
+    private readonly ApplicationDbContext _context;
+    public GenericRepository(ApplicationDbContext context)
+    {
+        _context = context;
+    }
     public IQueryable<T> GetAll()
         => _context.Set<T>().Where(e => !e.IsDeleted);
 
