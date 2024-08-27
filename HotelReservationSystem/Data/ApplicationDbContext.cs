@@ -15,6 +15,9 @@ namespace HotelReservationSystem.Data
         public DbSet<Invoice> Invoices { get; set; }
         public DbSet<FeedBack> FeedBacks { get; set; }
 
+        public ApplicationDbContext() : base()
+        {
+        }
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
             ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
