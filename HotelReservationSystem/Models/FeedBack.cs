@@ -9,7 +9,7 @@ namespace HotelReservationSystem.Models
         public DateTime SubmittedDate { get; set; }
         public string StaffResponse { get; set; }
         public DateTime ResponceDate { get; set; }
-        public int? CustomerId { get; set; }
-        public Customer? Customer { get; set; }
+      //  public int? CustomerId { get; set; }
+       // public Customer? Customer { get; set; }
     }
 }
