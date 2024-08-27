@@ -4,6 +4,7 @@ using HotelReservationSystem.Helpers;
 using HotelReservationSystem.Models;
 using HotelReservationSystem.Repositories;
 using System.Diagnostics.Contracts;
+using System.Linq.Expressions;
 
 namespace HotelReservationSystem.Services.Rooms
 {
@@ -69,6 +70,12 @@ namespace HotelReservationSystem.Services.Rooms
         {
             RoomDTO Room = repo.Get(r => r.RoomNumber == RoomNumber).MapeOne<RoomDTO>();
             return Room;
+        }
+
+        public List<RoomDTO> Get(Expression<Func<Room, bool>> predicate)
+        {
+            var Rooms = repo.Get(predicate).Map<RoomDTO>();
+            return Rooms.ToList();
         }
     }
 }

@@ -9,10 +9,11 @@ public class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity
 {
     private readonly ApplicationDbContext _context;
 
+
     public GenericRepository(ApplicationDbContext _context)
     {
         this._context = _context;
-    }
+     }
     public IQueryable<T> GetAll()
         => _context.Set<T>().Where(e => !e.IsDeleted);
 

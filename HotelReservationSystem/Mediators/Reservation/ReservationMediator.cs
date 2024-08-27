@@ -1,12 +1,25 @@
+
 ﻿using HotelReservationSystem.DTOs.Rooms;
+
+using HotelReservationSystem.Services.Reservations;
+using HotelReservationSystem.Services.Rooms;
+
 
 namespace HotelReservationSystem.Mediators.Reservation
 {
     public class ReservationMediator : IReservationMediator
     {
-        public List<RoomDTO> GetAvailableRooms()
+        private readonly IReservationService reservationService;
+        public ReservationMediator(IReservationService _reservationService)
         {
-            throw new NotImplementedException();
+            this.reservationService = _reservationService;
+        }
+        public List<RoomDTO> GetAvailableRooms(DateTime ReservationDate)
+        {
+           
+           //var Rooms= reservationService.Get(r=>r.CheckinDate)
+           throw new NotImplementedException();
+
         }
     }
 }

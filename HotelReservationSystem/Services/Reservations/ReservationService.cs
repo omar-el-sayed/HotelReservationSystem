@@ -1,7 +1,11 @@
+
 ﻿using HotelReservationSystem.DTOs.Rooms;
+
+﻿using HotelReservationSystem.DTOs;
 using HotelReservationSystem.Helpers;
 using HotelReservationSystem.Models;
 using HotelReservationSystem.Repositories;
+using System.Linq.Expressions;
 
 namespace HotelReservationSystem.Services.Reservations
 {
@@ -13,6 +17,13 @@ namespace HotelReservationSystem.Services.Reservations
         {
             this.repo = repo;
         }
+
+        public List<ReservationDTO> Get(Expression<Func<Reservation, bool>> predicate)
+        {
+            var reservations = repo.Get(predicate).Map<ReservationDTO>();
+            return reservations.ToList();
+        }
+
         public IEnumerable<RoomDTO> GetUnReservedRooms()
         {
             DateTime TimeNow = DateTime.Now;
