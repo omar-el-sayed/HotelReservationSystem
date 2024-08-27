@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HotelReservationSystem.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240827174630_v1")]
+    [Migration("20240827190201_v1")]
     partial class v1
     {
         /// <inheritdoc />
@@ -48,6 +48,9 @@ namespace HotelReservationSystem.Migrations
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
 
@@ -296,21 +299,18 @@ namespace HotelReservationSystem.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("FacilitiesId")
+                    b.Property<int>("FacilityId")
                         .HasColumnType("int");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
-
-                    b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
 
                     b.Property<int>("RoomId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("FacilitiesId");
+                    b.HasIndex("FacilityId");
 
                     b.HasIndex("RoomId");
 
@@ -386,7 +386,7 @@ namespace HotelReservationSystem.Migrations
                 {
                     b.HasOne("HotelReservationSystem.Models.Facility", "Facility")
                         .WithMany("RoomFacilities")
-                        .HasForeignKey("FacilitiesId")
+                        .HasForeignKey("FacilityId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
