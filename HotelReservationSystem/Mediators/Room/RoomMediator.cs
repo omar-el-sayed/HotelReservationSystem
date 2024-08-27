@@ -32,8 +32,13 @@ namespace HotelReservationSystem.Mediators.Room
             if (roomDto.RoomPictures is not null && roomDto.RoomPictures.Count > 0)
                 pictureRoomService.AddRange(roomid, roomDto.RoomPictures);
 
-            if (roomDto.RoomFacilities is not null && roomDto.RoomFacilities.Count > 0)
-                roomFacilityService.AddRange(roomid, roomDto.RoomFacilities);
+            //if (roomDto.RoomFacilities is not null && roomDto.RoomFacilities.Count > 0)
+            //    roomFacilityService.AddRange(roomid, roomDto.RoomFacilities);
+
+            if (roomDto.FacilitiesIDS is not null && roomDto.FacilitiesIDS.Count > 0)
+                roomFacilityService.AddRange(roomid, roomDto.FacilitiesIDS);
+
+
         }
         public bool Update(UpdateRoomDto roomDto)
             => roomService.Update(roomDto);

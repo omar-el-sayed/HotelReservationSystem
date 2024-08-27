@@ -11,12 +11,11 @@ namespace HotelReservationSystem.Services.RoomFacilites
         private readonly IGenericRepository<RoomFacility> repo;
         private readonly IFacilityService facilityService;
 
-        public RoomFacilityService(IGenericRepository<RoomFacility> repo, IFacilityService facilityService)
+        public RoomFacilityService(IGenericRepository<RoomFacility> repo)
         {
             this.repo = repo;
-            this.facilityService = facilityService;
         }
-        public void AddRange(int id, IEnumerable<RoomFacilityDTO> roomFacilityDTOs)
+        public void AddRange(int roomId, List<int> FacilitiesIDS)
         {
             // this wrong behavior
             //foreach (var roomFacilityDTO in roomFacilityDTOs)
@@ -26,6 +25,17 @@ namespace HotelReservationSystem.Services.RoomFacilites
             //    roomfacility.Id = id;
             //    repo.Add(roomfacility);
             //}
+            foreach (var facilityID in FacilitiesIDS)
+            {
+                var RoomFacility = new RoomFacility()
+                {
+                    RoomId = roomId,
+                    FacilityId = facilityID
+                };
+                repo.Add(RoomFacility);
+
+            }
+
             repo.SaveChanges();
         }
     }
