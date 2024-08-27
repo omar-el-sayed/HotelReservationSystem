@@ -1,8 +1,11 @@
 ﻿using Autofac;
 using HotelReservationSystem.Data;
+using HotelReservationSystem.Mediators.Payment;
 using HotelReservationSystem.Mediators.Room;
 using HotelReservationSystem.Repositories;
 using HotelReservationSystem.Services.Facilities;
+using HotelReservationSystem.Services.PictureRooms;
+using HotelReservationSystem.Services.Reservations;
 using HotelReservationSystem.Services.RoomFacilites;
 using HotelReservationSystem.Services.Rooms;
 using Microsoft.EntityFrameworkCore;
@@ -24,15 +27,22 @@ namespace HotelReservationSystem
             {
                 var optionbuilder = new DbContextOptionsBuilder<ApplicationDbContext>();
                 var connectionstring = configration.GetConnectionString("connectionstring");
-                optionbuilder.UseSqlServer(connectionstring).LogTo(log=>Debug.WriteLine(log),LogLevel.Information)
+                optionbuilder.UseSqlServer(connectionstring).LogTo(log => Debug.WriteLine(log), LogLevel.Information)
                 .EnableSensitiveDataLogging();
                 return new ApplicationDbContext(optionbuilder.Options);
             }).InstancePerLifetimeScope();
+
             builder.RegisterGeneric(typeof(GenericRepository<>)).As(typeof(IGenericRepository<>));
             builder.RegisterAssemblyTypes(typeof(IFacilityService).Assembly).AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterAssemblyTypes(typeof(IRoomFacilityService).Assembly).AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterAssemblyTypes(typeof(IRoomService).Assembly).AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterAssemblyTypes(typeof(IRoomMediator).Assembly).AsImplementedInterfaces().InstancePerLifetimeScope();
+            builder.RegisterAssemblyTypes(typeof(IReservationService).Assembly).AsImplementedInterfaces().InstancePerLifetimeScope();
+            builder.RegisterAssemblyTypes(typeof(IPictureRoomService).Assembly).AsImplementedInterfaces().InstancePerLifetimeScope();
+            builder.RegisterAssemblyTypes(typeof(IPaymentMediator).Assembly).AsImplementedInterfaces().InstancePerLifetimeScope();
+
+
+
         }
     }
 }

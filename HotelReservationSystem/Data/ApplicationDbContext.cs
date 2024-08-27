@@ -1,5 +1,6 @@
 ﻿using HotelReservationSystem.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Diagnostics;
 
 namespace HotelReservationSystem.Data
 {
@@ -15,10 +16,14 @@ namespace HotelReservationSystem.Data
         public DbSet<Invoice> Invoices { get; set; }
         public DbSet<FeedBack> FeedBacks { get; set; }
 
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
+        public ApplicationDbContext()
         {
             ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
         }
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
+        {
+        }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -33,7 +38,7 @@ namespace HotelReservationSystem.Data
                 .WithMany(r => r.RoomFacilities).HasForeignKey(rf => rf.RoomId);
 
             modelBuilder.Entity<RoomFacility>().HasOne(rf => rf.Facility)
-                .WithMany(f => f.RoomFacilities).HasForeignKey(rf => rf.FacilitiesId);
+                .WithMany(f => f.RoomFacilities).HasForeignKey(rf => rf.FacilityId);
 
             modelBuilder.Entity<PictureRoom>().HasOne(pr => pr.Room)
                 .WithMany(r => r.RoomPictures).HasForeignKey(pr => pr.RoomId);

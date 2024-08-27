@@ -13,7 +13,8 @@ namespace HotelReservationSystem.Middlewares
             this.context = context;
 
         }
-        public async Task invokeAsync(HttpContext httpContext)
+
+        public async Task InvokeAsync(HttpContext httpContext)
         {
             var method = httpContext.Request.Method;
             if (method.ToUpper() != "GET")

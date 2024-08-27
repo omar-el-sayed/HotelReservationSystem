@@ -11,5 +11,6 @@
         public int RoomNumber { get; set; }
         public List<PictureRoomDTO>? RoomPictures { get; set; }
         public List<RoomFacilityDTO>? RoomFacilities { get; set; }
+        public List<int>? FacilitiesIDS { get; set; }
     }
 }
