@@ -16,14 +16,14 @@ namespace HotelReservationSystem.Data
         public DbSet<Invoice> Invoices { get; set; }
         public DbSet<FeedBack> FeedBacks { get; set; }
 
-        public ApplicationDbContext()
+        public ApplicationDbContext() 
         {
-            ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
+                    ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
+
         }
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
         }
-
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -81,7 +81,7 @@ namespace HotelReservationSystem.Data
             #endregion
 
             #region Resservation
-            modelBuilder.Entity<Reservation>().Property(r => r.Status).HasColumnType("Nvarchar(10)"); 
+            modelBuilder.Entity<Reservation>().Property(r => r.Status).HasColumnType("Nvarchar(10)");
             #endregion
 
         }

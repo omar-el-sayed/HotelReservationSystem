@@ -14,7 +14,7 @@ namespace HotelReservationSystem.Controllers
     public class PaymentsController(IPaymentMediator paymentMediator) : BaseController
     {
         [HttpPost("charge")]
-        public async Task<ResultViewModel<ChargeViewModel>> Charge([FromBody] PaymentViewModel payment)
+        public async Task<ResultViewModel<ChargeViewModel>> ChargeAsync([FromBody] PaymentViewModel payment)
         {
             try
             {
@@ -31,15 +31,11 @@ namespace HotelReservationSystem.Controllers
         }
 
         [HttpPost("create-invoice")]
-        public async Task<ResultViewModel<InvoiceViewModel>> CreateInvoice([FromBody] PaymentViewModel payment)
+        public async Task<ResultViewModel<InvoiceViewModel>> CreateInvoiceAsync([FromBody] PaymentViewModel payment)
         {
             var invoice = await paymentMediator.CreateInvoice(payment.MapeOne<PaymentDto>());
 
-            var invoiceVM = new InvoiceViewModel
-            {
-                HostedInvoiceUrl = invoice.HostedInvoiceUrl,
-                InvoicePdf = invoice.InvoicePdf
-            };
+            var invoiceVM = invoice.MapeOne<InvoiceViewModel>();
 
             return ResultViewModel<InvoiceViewModel>.Success(invoiceVM, "Invoice created successfully");
         }
