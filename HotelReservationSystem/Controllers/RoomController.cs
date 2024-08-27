@@ -1,6 +1,6 @@
-﻿using HotelReservationSystem.DTOs.Room;
+﻿using HotelReservationSystem.DTOs.Rooms;
 using HotelReservationSystem.Helpers;
-using HotelReservationSystem.Mediators.Room;
+using HotelReservationSystem.Mediators.Rooms;
 using HotelReservationSystem.ViewModels;
 using HotelReservationSystem.ViewModels.Rooms;
 using Microsoft.AspNetCore.Mvc;
@@ -28,8 +28,8 @@ namespace HotelReservationSystem.Controllers
         [HttpPost("add")]
         public ResultViewModel<int> AddRoom(CreateRoomViewModel roomVM)
         {
-            roomMediator.AddRoom(roomVM.MapeOne<CreateRoomDto>());
-            return ResultViewModel<int>.Success(roomVM.Id, $"Room is added successfully with id: {roomVM.Id}");
+            var room =roomMediator.AddRoom(roomVM.MapeOne<CreateRoomDto>());
+            return ResultViewModel<int>.Success(room.Id, $"Room is added successfully with id: {room.Id}");
         }
 
         [HttpPut("edit")]

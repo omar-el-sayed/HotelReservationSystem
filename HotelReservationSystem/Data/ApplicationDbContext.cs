@@ -18,11 +18,11 @@ namespace HotelReservationSystem.Data
 
         public ApplicationDbContext() 
         {
-                    ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
 
         }
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
+            ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

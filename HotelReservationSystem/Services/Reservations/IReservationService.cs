@@ -1,4 +1,4 @@
-﻿using HotelReservationSystem.DTOs.Room;
+﻿using HotelReservationSystem.DTOs.Rooms;
 
 namespace HotelReservationSystem.Services.Reservations
 {

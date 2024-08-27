@@ -1,4 +1,5 @@
-﻿using HotelReservationSystem.DTOs.Room;
+﻿using HotelReservationSystem.DTOs.Rooms;
+using HotelReservationSystem.Models;
 
 namespace HotelReservationSystem.Services.Rooms
 {
@@ -6,7 +7,7 @@ namespace HotelReservationSystem.Services.Rooms
     {
         //IEnumerable<RoomDTO> GetAvailableRooms();
         RoomDTO GetById(int id);
-        int Add(CreateRoomDto roomDTO);
+        Room Add(CreateRoomDto roomDTO);
         bool Update(UpdateRoomDto roomDto);
         bool Delete(int id);
         RoomDTO SearchRoom(int RoomNumber);

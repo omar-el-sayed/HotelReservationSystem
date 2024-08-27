@@ -43,7 +43,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseMiddleware<GlobalErrorHandlerMiddleware>();
-app.UseMiddleware<TransactionHandlerMiddleware>();
+//app.UseMiddleware<TransactionHandlerMiddleware>();
 
 app.UseAuthorization();
 

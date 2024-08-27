@@ -11,7 +11,7 @@ namespace HotelReservationSystem.ViewModels.Rooms
         public int NumOfBed { get; set; }
         public int MaxOccupancy { get; set; }
         public double RoomSize { get; set; }
-        public AvailableStatus AvailableStatus { get; set; }
+        public string AvailableStatus { get; set; }
         public int RoomNumber { get; set; }
         public List<PictureRoomViewModel>? RoomPictures { get; set; }
         public List<RoomFacilityViewModel>? RoomFacilities { get; set; }
