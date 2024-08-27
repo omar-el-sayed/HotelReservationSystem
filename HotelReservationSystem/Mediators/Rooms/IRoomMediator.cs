@@ -1,12 +1,13 @@
-﻿using HotelReservationSystem.DTOs.Room;
+﻿using HotelReservationSystem.DTOs.Rooms;
+using HotelReservationSystem.Models;
 
-namespace HotelReservationSystem.Mediators.Room
+namespace HotelReservationSystem.Mediators.Rooms
 {
     public interface IRoomMediator
     {
         //IEnumerable<RoomDTO> GetAvailableRooms();
         RoomDTO GetById(int id);
-        void AddRoom(CreateRoomDto roomDto);
+        Room AddRoom(CreateRoomDto roomDto);
         bool Update(UpdateRoomDto roomDto);
         bool Delete(int id);
         RoomDTO SearchRoom(int RoomNumber);

@@ -1,7 +1,7 @@
 ﻿using Autofac;
 using HotelReservationSystem.Data;
 using HotelReservationSystem.Mediators.Payment;
-using HotelReservationSystem.Mediators.Room;
+using HotelReservationSystem.Mediators.Rooms;
 using HotelReservationSystem.Repositories;
 using HotelReservationSystem.Services.Facilities;
 using HotelReservationSystem.Services.PictureRooms;

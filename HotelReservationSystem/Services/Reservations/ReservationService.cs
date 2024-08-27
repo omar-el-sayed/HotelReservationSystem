@@ -1,5 +1,7 @@
+
+﻿using HotelReservationSystem.DTOs.Rooms;
+
 ﻿using HotelReservationSystem.DTOs;
-using HotelReservationSystem.DTOs.Room;
 using HotelReservationSystem.Helpers;
 using HotelReservationSystem.Models;
 using HotelReservationSystem.Repositories;

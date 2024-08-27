@@ -1,5 +1,5 @@
 ﻿using HotelReservationSystem.DTOs.Facility;
-using HotelReservationSystem.DTOs.Room;
+using HotelReservationSystem.DTOs.Rooms;
 using HotelReservationSystem.Models;
 
 namespace HotelReservationSystem.Services.Facilities

@@ -1,6 +1,9 @@
-﻿using HotelReservationSystem.DTOs.Room;
+
+﻿using HotelReservationSystem.DTOs.Rooms;
+
 using HotelReservationSystem.Services.Reservations;
 using HotelReservationSystem.Services.Rooms;
+
 
 namespace HotelReservationSystem.Mediators.Reservation
 {

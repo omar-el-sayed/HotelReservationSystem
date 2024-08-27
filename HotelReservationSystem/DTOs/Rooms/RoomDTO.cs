@@ -1,4 +1,4 @@
-﻿namespace HotelReservationSystem.DTOs.Room
+﻿namespace HotelReservationSystem.DTOs.Rooms
 {
     public class RoomDTO
     {

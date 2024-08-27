@@ -1,10 +1,11 @@
-﻿using HotelReservationSystem.DTOs.Room;
+﻿using HotelReservationSystem.DTOs.Rooms;
+using HotelReservationSystem.Models;
 using HotelReservationSystem.Services.PictureRooms;
 using HotelReservationSystem.Services.RoomFacilites;
 using HotelReservationSystem.Services.Rooms;
 using Microsoft.Identity.Client;
 
-namespace HotelReservationSystem.Mediators.Room
+namespace HotelReservationSystem.Mediators.Rooms
 {
 
     public class RoomMediator : IRoomMediator
@@ -25,20 +26,17 @@ namespace HotelReservationSystem.Mediators.Room
         public RoomDTO GetById(int id)
             => roomService.GetById(id);
 
-        public void AddRoom(CreateRoomDto roomDto)
+        public Room AddRoom(CreateRoomDto roomDto)
         {
-            int roomid = roomService.Add(roomDto);
+            var room = roomService.Add(roomDto);
 
             if (roomDto.RoomPictures is not null && roomDto.RoomPictures.Count > 0)
-                pictureRoomService.AddRange(roomid, roomDto.RoomPictures);
-
-            //if (roomDto.RoomFacilities is not null && roomDto.RoomFacilities.Count > 0)
-            //    roomFacilityService.AddRange(roomid, roomDto.RoomFacilities);
+                pictureRoomService.AddRange(room.Id, roomDto.RoomPictures);
 
             if (roomDto.FacilitiesIDS is not null && roomDto.FacilitiesIDS.Count > 0)
-                roomFacilityService.AddRange(roomid, roomDto.FacilitiesIDS);
+                roomFacilityService.AddRange(room.Id, roomDto.FacilitiesIDS);
 
-
+            return room;
         }
         public bool Update(UpdateRoomDto roomDto)
             => roomService.Update(roomDto);

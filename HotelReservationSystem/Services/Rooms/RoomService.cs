@@ -1,4 +1,5 @@
-﻿using HotelReservationSystem.DTOs.Room;
+﻿using HotelReservationSystem.DTOs.Rooms;
+using HotelReservationSystem.Exceptions;
 using HotelReservationSystem.Helpers;
 using HotelReservationSystem.Models;
 using HotelReservationSystem.Repositories;
@@ -22,27 +23,32 @@ namespace HotelReservationSystem.Services.Rooms
 
         public RoomDTO GetById(int id)
         {
-            var room = repo.GetById(id);
-            return room.MapeOne<RoomDTO>();
+            //var room = repo.GetById(id);
+            var room =repo.Get(x=>x.Id == id);
+            return room.Map<RoomDTO>().FirstOrDefault();
         }
 
-        public int Add(CreateRoomDto roomDTO)
+        public Room Add(CreateRoomDto roomDTO)
         {
             var room = roomDTO.MapeOne<Room>();
             repo.Add(room);
             repo.SaveChanges();
 
-            return room.Id;
+            return room;
         }
 
         public bool Update(UpdateRoomDto roomDto)
         {
             var room = repo.GetByIdWithTracking(roomDto.Id);
+            //var room = repo.GetById(roomDto.Id);
             if (room is null)
-                return false;
+                throw new BusinessException(ErrorCode.DoesNotExist, $"Room with id {room.Id} Not Exist ");
 
-            var updatedRoom = roomDto.MapeOne<Room>();
-            repo.Update(updatedRoom);
+            //room.Price=roomDto.Price;
+
+            roomDto.MapeOne<Room>();
+           
+            //repo.Update(updatedRoom);
             repo.SaveChanges();
 
             return true;
@@ -52,7 +58,8 @@ namespace HotelReservationSystem.Services.Rooms
         {
             var room = repo.GetByIdWithTracking(id);
             if (room is null)
-                return false;
+                throw new BusinessException(ErrorCode.DoesNotExist, $"Room with id {id} Not Exist ");
+
 
             repo.Delete(room);
             repo.SaveChanges();

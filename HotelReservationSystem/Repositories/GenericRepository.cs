@@ -8,10 +8,12 @@ namespace HotelReservationSystem.Repositories;
 public class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity
 {
     private readonly ApplicationDbContext _context;
-    public GenericRepository(ApplicationDbContext context)
+
+
+    public GenericRepository(ApplicationDbContext _context)
     {
-        _context = context;
-    }
+        this._context = _context;
+     }
     public IQueryable<T> GetAll()
         => _context.Set<T>().Where(e => !e.IsDeleted);
 
@@ -25,7 +27,9 @@ public class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity
         => GetAll().FirstOrDefault(e => e.Id == id);
 
     public T? GetByIdWithTracking(int id)
-        => GetAll().AsTracking().FirstOrDefault(x => x.Id == id);
+    {
+        return _context.Set<T>().Where(x=>!x.IsDeleted &&x.Id==id).AsTracking().FirstOrDefault();
+    }
 
     public void HardDelete(int id)
         => _context.Set<T>().Where(x => x.Id == id).ExecuteDelete();
@@ -38,6 +42,7 @@ public class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity
 
     public void Update(T entity)
     {
+        //_context.Entry<T>(entity).State = EntityState.Modified;
         _context.Set<T>().Update(entity);
     }
 

@@ -18,7 +18,7 @@ namespace HotelReservationSystem.Services.PictureRooms
             var picturerooms = pictureRoomDTO.AsQueryable().Map<PictureRoom>();
             foreach (var pictureroom in picturerooms)
             {
-                pictureroom.Id = Id;
+                pictureroom.RoomId = Id;
                 repo.Add(pictureroom);
             }
             repo.SaveChanges();
