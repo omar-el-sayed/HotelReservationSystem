@@ -3,6 +3,7 @@ using HotelReservationSystem.Data;
 using HotelReservationSystem.Mediators.Payment;
 using HotelReservationSystem.Mediators.Rooms;
 using HotelReservationSystem.Repositories;
+using HotelReservationSystem.Services.Auth;
 using HotelReservationSystem.Services.Facilities;
 using HotelReservationSystem.Services.PictureRooms;
 using HotelReservationSystem.Services.Reservations;
@@ -13,7 +14,7 @@ using System.Diagnostics;
 
 namespace HotelReservationSystem
 {
-    public class AutoFacModule :Module
+    public class AutoFacModule : Module
     {
         private readonly IConfiguration configration;
 
@@ -40,9 +41,7 @@ namespace HotelReservationSystem
             builder.RegisterAssemblyTypes(typeof(IReservationService).Assembly).AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterAssemblyTypes(typeof(IPictureRoomService).Assembly).AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterAssemblyTypes(typeof(IPaymentMediator).Assembly).AsImplementedInterfaces().InstancePerLifetimeScope();
-
-
-
+            builder.RegisterAssemblyTypes(typeof(IAuthService).Assembly).AsImplementedInterfaces().InstancePerLifetimeScope();
         }
     }
 }

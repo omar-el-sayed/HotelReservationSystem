@@ -100,6 +100,8 @@ namespace HotelReservationSystem.Data
                     .IsRequired()
                     .HasMaxLength(50);
             });
+
+            new DbInitializer(modelBuilder).Seed();
         }
     }
 }
