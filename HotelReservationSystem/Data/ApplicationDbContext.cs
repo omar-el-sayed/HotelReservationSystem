@@ -1,10 +1,11 @@
 ﻿using HotelReservationSystem.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using System.Diagnostics;
 
 namespace HotelReservationSystem.Data
 {
-    public class ApplicationDbContext : DbContext
+    public class ApplicationDbContext : IdentityDbContext<User>
     {
         public DbSet<Facility> Facilities { get; set; }
         public DbSet<Offer> Offers { get; set; }
@@ -16,12 +17,13 @@ namespace HotelReservationSystem.Data
         public DbSet<Invoice> Invoices { get; set; }
         public DbSet<FeedBack> FeedBacks { get; set; }
         public DbSet<RoomReservation> RoomReservations { get; set; }
+        public DbSet<User> Users { get; set; }
 
-
-        public ApplicationDbContext() 
+        public ApplicationDbContext()
         {
             ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
         }
+
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
         }
@@ -85,6 +87,19 @@ namespace HotelReservationSystem.Data
             modelBuilder.Entity<Reservation>().Property(r => r.Status).HasColumnType("Nvarchar(10)");
             #endregion
 
+            modelBuilder.Entity<IdentityUserLogin<string>>().HasNoKey();
+            modelBuilder.Entity<IdentityUserRole<string>>().HasKey(e => new { e.UserId, e.RoleId });
+            modelBuilder.Entity<IdentityUserToken<string>>().HasNoKey();
+            modelBuilder.Entity<User>(entity =>
+            {
+                entity.Property(e => e.FirstName)
+                    .IsRequired()
+                    .HasMaxLength(50);
+
+                entity.Property(e => e.LastName)
+                    .IsRequired()
+                    .HasMaxLength(50);
+            });
         }
     }
 }

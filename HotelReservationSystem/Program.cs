@@ -2,13 +2,16 @@ using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using AutoMapper;
 using HotelReservationSystem;
+using HotelReservationSystem.Data;
 using HotelReservationSystem.Helpers;
 using HotelReservationSystem.Middlewares;
+using HotelReservationSystem.Models;
 using HotelReservationSystem.ViewModels.Facilities;
 using HotelReservationSystem.ViewModels.Payments;
 using HotelReservationSystem.ViewModels.PictureRooms;
 using HotelReservationSystem.ViewModels.RoomFailites;
 using HotelReservationSystem.ViewModels.Rooms;
+using Microsoft.AspNetCore.Identity;
 using Stripe;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -26,6 +29,10 @@ builder.Host.ConfigureContainer<ContainerBuilder>(containerbuilder =>
 {
     containerbuilder.RegisterModule(new AutoFacModule(builder.Configuration));
 });
+
+builder.Services.Configure<Jwt>(builder.Configuration.GetSection(nameof(Jwt)));
+
+builder.Services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>();
 
 builder.Services.AddAutoMapper(typeof(RoomProfile), typeof(PaymentProfile), typeof(FacilityProfile), typeof(PictureRoomProfile), typeof(RoomFacilityProfile));
 
