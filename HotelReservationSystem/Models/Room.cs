@@ -7,7 +7,7 @@
             RoomPictures = new List<PictureRoom>();
             RoomFacilities = new List<RoomFacility>();
             RoomOffers = new List<RoomOffer>();
-            Reservations = new List<Reservation>();
+            RoomReservations = new List<RoomReservation>();
         }
 
         public RoomType RoomType { get; set; }

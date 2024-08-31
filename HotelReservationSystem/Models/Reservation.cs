@@ -8,6 +8,7 @@ namespace HotelReservationSystem.Models
         public Reservation()
         {
             Rooms = new List<Room>();
+            RoomReservations = new List<RoomReservation>();
         }
         public DateTime CheckinDate { get; set; }
         public DateTime CheckoutDate { get; set; }
@@ -22,6 +23,8 @@ namespace HotelReservationSystem.Models
         public Payment? Payment { get; set; }
         public int? InvoiceId { get; set; }
         public Invoice? Invoice { get; set; }
+        public List<RoomReservation>? RoomReservations   { get; set; }
+
 
     }
 }

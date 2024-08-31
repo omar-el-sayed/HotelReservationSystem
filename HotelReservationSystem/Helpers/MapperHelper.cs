@@ -14,7 +14,14 @@ namespace HotelReservationSystem.Helpers
 
         public static TResult MapeOne<TResult>(this object source)
         {
+            //mapper.Map(source, object);
+            //TDestination Map<TSource, TDestination>(TSource source, TDestination destination);
             return mapper.Map<TResult>(source);
+           
+        }
+        public static TDestination MapOne<TSource, TDestination>(this TSource source, TDestination destination)
+        {
+            return mapper.Map(source, destination);
         }
     }
 }

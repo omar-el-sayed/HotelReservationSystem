@@ -51,8 +51,7 @@ namespace HotelReservationSystem.Services.Facilities
             if (facility is null)
                 throw new BusinessException(ErrorCode.DoesNotExist, $"Facility with id {facilityDto.Id} Not Exist ");
 
-            var updatedFacility = facilityDto.MapeOne<Facility>();
-            repo.Update(updatedFacility);
+            facilityDto.MapOne(facility);
             repo.SaveChanges();
             return true;
         }
