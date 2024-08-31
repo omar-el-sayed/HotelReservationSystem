@@ -40,15 +40,10 @@ namespace HotelReservationSystem.Services.Rooms
         public bool Update(UpdateRoomDto roomDto)
         {
             var room = repo.GetByIdWithTracking(roomDto.Id);
-            //var room = repo.GetById(roomDto.Id);
             if (room is null)
                 throw new BusinessException(ErrorCode.DoesNotExist, $"Room with id {room.Id} Not Exist ");
 
-            //room.Price=roomDto.Price;
-
-            roomDto.MapeOne<Room>();
-           
-            //repo.Update(updatedRoom);
+            roomDto.MapOne(room);
             repo.SaveChanges();
 
             return true;

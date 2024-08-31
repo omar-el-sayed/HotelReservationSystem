@@ -32,7 +32,7 @@ namespace HotelReservationSystem.Controllers
         }
 
         [HttpPut("updateFacility")]
-        public ResultViewModel<int> updateFacility(UpdateFacilityDto facilityVM)
+        public ResultViewModel<int> updateFacility(FacilityViewModel facilityVM)
         {
             if (facilityService.Update(facilityVM.MapeOne<UpdateFacilityDto>()))
                 return ResultViewModel<int>.Success(facilityVM.Id, $"Facility with id: {facilityVM.Id} is updated successfully");

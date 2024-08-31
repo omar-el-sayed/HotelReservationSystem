@@ -15,14 +15,15 @@ namespace HotelReservationSystem.Data
         public DbSet<Reservation> Reservations { get; set; }
         public DbSet<Invoice> Invoices { get; set; }
         public DbSet<FeedBack> FeedBacks { get; set; }
+        public DbSet<RoomReservation> RoomReservations { get; set; }
+
 
         public ApplicationDbContext() 
         {
-
+            ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
         }
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
-            ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
