@@ -22,8 +22,7 @@ public enum ErrorCode
 }
 public enum ReservationStatus
 {
-    Available=0,
-    Pending =1,
+    Pending =0,
     Confirmed ,
     Cancelled ,
     Invoiced ,
