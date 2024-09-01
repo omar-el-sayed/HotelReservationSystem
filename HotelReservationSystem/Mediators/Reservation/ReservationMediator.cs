@@ -1,11 +1,12 @@
-
-using HotelReservationSystem.DTOs;
+using HotelReservationSystem.DTOs.Reservations;
 using HotelReservationSystem.DTOs.Rooms;
+using HotelReservationSystem.Exceptions;
 using HotelReservationSystem.Helpers;
 using HotelReservationSystem.Models;
 using HotelReservationSystem.Services.Reservations;
 using HotelReservationSystem.Services.RoomReservations;
 using HotelReservationSystem.Services.Rooms;
+using Microsoft.EntityFrameworkCore;
 
 namespace HotelReservationSystem.Mediators.Reservation
 {
@@ -23,34 +24,29 @@ namespace HotelReservationSystem.Mediators.Reservation
             this.roomReservationService = roomReservationService;
         }
 
-        public void CancleReservation(ReservationDTO reservationDTO)
+        public void CancleReservation(int ReservationId)
         {
-            reservationDTO.Status = ReservationStatus.Cancelled;
-            reservationService.UpdateReservation(reservationDTO);
+            reservationService.UpdateReservationStatus(ReservationId, ReservationStatus.Cancelled);
         }
 
-        //To be discussed 
-        public List<RoomDTO> GetAvailableRooms()
+        public List<RoomDTO> GetAvailableRooms(DateTime CheckIn,DateTime CheckOut)
         {
-            var rooms = roomService.Get(r => !r.RoomReservations.Any());
-
-            // throw new NotImplementedException();
-            return rooms;
-
+            var ReservedRoomIDs = reservationService.GetReservedRooms(CheckIn, CheckOut);
+            var availableRooms = roomService.Get(r => !ReservedRoomIDs.Contains(r.Id)).ToList();
+            return availableRooms;
         }
 
-        //To be discussed 
-        public void MakeReservation(ReservationDTO reservationDTO)
+        public void MakeReservation(CreateResrvationDTO createResrvationDTO)
         {
-            int ReservtionId = reservationService.AddReservation(reservationDTO);
+            int ReservtionId = reservationService.AddReservation(createResrvationDTO);
+            reservationService.UpdateReservationStatus(ReservtionId,ReservationStatus.Pending);
             List<RoomReservation> roomReservations = new List<RoomReservation>();
 
-            foreach (var Room in reservationDTO.RoomDTOs)
+            foreach (var Room in createResrvationDTO.RoomDTOs)
             {
                 roomReservations.Add(new RoomReservation { RoomId = Room.Id, ReservationId = ReservtionId });
             }
             roomReservationService.AddRange(roomReservations);
-          
         }
     }
 }
