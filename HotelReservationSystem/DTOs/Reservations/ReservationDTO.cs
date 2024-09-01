@@ -1,6 +1,6 @@
 ﻿using HotelReservationSystem.DTOs.Rooms;
 
-namespace HotelReservationSystem.DTOs
+namespace HotelReservationSystem.DTOs.Reservations
 {
     public class ReservationDTO
     {

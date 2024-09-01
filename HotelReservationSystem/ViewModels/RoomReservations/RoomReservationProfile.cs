@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using HotelReservationSystem.DTOs;
+using HotelReservationSystem.DTOs.Reservations;
 using HotelReservationSystem.Models;
 
 namespace HotelReservationSystem.ViewModels.RoomReservations
