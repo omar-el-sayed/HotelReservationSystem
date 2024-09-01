@@ -11,5 +11,8 @@ namespace HotelReservationSystem.Services.Reservations
     {
         IEnumerable<RoomDTO> GetUnReservedRooms();
         List<ReservationDTO> Get(Expression<Func<Reservation, bool>> predicate);
+        int AddReservation(ReservationDTO reservationDTO);
+        void UpdateReservation(ReservationDTO reservationDTO);
+
     }
 }
