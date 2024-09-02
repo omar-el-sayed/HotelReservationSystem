@@ -9,7 +9,7 @@ namespace HotelReservationSystem.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AccountController(IAuthService _authService) : ControllerBase
+    public class AccountController(IAuthService _authService) : BaseController
     {
         [HttpPost("register")]
         public async Task<ResultViewModel<AuthViewModel>> RegisterAsync([FromBody] RegisterViewModel register)

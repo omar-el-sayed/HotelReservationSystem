@@ -3,12 +3,14 @@ using HotelReservationSystem.Helpers;
 using HotelReservationSystem.Mediators.Rooms;
 using HotelReservationSystem.ViewModels;
 using HotelReservationSystem.ViewModels.Rooms;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HotelReservationSystem.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class RoomController(IRoomMediator roomMediator) : BaseController
     {
         //[HttpGet("getavailable")]
@@ -28,7 +30,7 @@ namespace HotelReservationSystem.Controllers
         [HttpPost("add")]
         public ResultViewModel<int> AddRoom(CreateRoomViewModel roomVM)
         {
-            var room =roomMediator.AddRoom(roomVM.MapeOne<CreateRoomDto>());
+            var room = roomMediator.AddRoom(roomVM.MapeOne<CreateRoomDto>());
             return ResultViewModel<int>.Success(room.Id, $"Room is added successfully with id: {room.Id}");
         }
 
