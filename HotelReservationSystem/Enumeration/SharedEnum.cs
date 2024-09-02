@@ -38,8 +38,4 @@ public enum Roles
 {
     Customer,
     HotelStaff
-    Pending =0,
-    Confirmed ,
-    Cancelled ,
-    Invoiced ,
 }
