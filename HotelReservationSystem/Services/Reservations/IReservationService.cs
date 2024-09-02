@@ -16,5 +16,7 @@ namespace HotelReservationSystem.Services.Reservations
         bool ValidateDate(DateTime CHeckIn, DateTime CheckOut);
         void UpdateReservationStatus(int ReservationId, ReservationStatus reservationStatus);
         List<int> GetReservedRooms(DateTime CheckIn, DateTime CheckOut);
+        IEnumerable<ReservationDTO> GetReservations();
     }
+
 }

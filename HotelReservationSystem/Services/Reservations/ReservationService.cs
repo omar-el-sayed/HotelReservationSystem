@@ -17,7 +17,10 @@ namespace HotelReservationSystem.Services.Reservations
         {
             this.repo = repo;
         }
-
+        public IEnumerable<ReservationDTO> GetReservations()
+        {
+            return repo.GetAll().Map<ReservationDTO>();
+        }
         public int AddReservation(CreateResrvationDTO createResrvationDTO)
         {
             var reservation = createResrvationDTO.MapeOne<Reservation>();

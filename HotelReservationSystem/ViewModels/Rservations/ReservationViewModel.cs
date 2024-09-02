@@ -1,15 +1,16 @@
 ﻿using HotelReservationSystem.DTOs.Rooms;
+using HotelReservationSystem.Models;
 
-namespace HotelReservationSystem.DTOs.Reservations
+namespace HotelReservationSystem.ViewModels.Rservations
 {
-    public class CreateResrvationDTO
+    public class ReservationViewModel
     {
-        //public int Id { get; set; }
         public DateTime CheckinDate { get; set; }
         public DateTime CheckoutDate { get; set; }
         public decimal TotalPrice { get; set; }
-        //public ReservationStatus Status { get; set; }
+        public ReservationStatus Status { get; set; }
         public int NumOfGuests { get; set; }
         public List<RoomDTO>? RoomDTOs { get; set; }
+        //public List<RoomReservation>? RoomReservations { get; set; }
     }
 }

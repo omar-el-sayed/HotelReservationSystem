@@ -36,7 +36,12 @@ namespace HotelReservationSystem.Mediators.Reservation
             return availableRooms;
         }
 
-        public void MakeReservation(CreateResrvationDTO createResrvationDTO)
+        public IEnumerable<ReservationDTO> GetReservations()
+        {
+           return  reservationService.GetReservations();
+        }
+
+        public int MakeReservation(CreateResrvationDTO createResrvationDTO)
         {
             int ReservtionId = reservationService.AddReservation(createResrvationDTO);
             reservationService.UpdateReservationStatus(ReservtionId,ReservationStatus.Pending);
@@ -47,6 +52,7 @@ namespace HotelReservationSystem.Mediators.Reservation
                 roomReservations.Add(new RoomReservation { RoomId = Room.Id, ReservationId = ReservtionId });
             }
             roomReservationService.AddRange(roomReservations);
+            return ReservtionId;
         }
     }
 }
