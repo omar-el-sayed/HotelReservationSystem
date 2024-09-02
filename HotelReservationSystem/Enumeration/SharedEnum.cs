@@ -18,13 +18,23 @@ public enum ErrorCode
     FailedUpdateFacility = 20,
     FailedDeleteFacility,
     FaildAddFacility,
+    FailedRegister = 100,
+    FailedLogin,
+    FailedLogout,
     PaymentFailure = 1000
 }
+
 public enum ReservationStatus
 {
-    Available=0,
-    Pending =1,
-    Confirmed ,
-    Cancelled ,
-    Invoiced ,
+    Available = 0,
+    Pending = 1,
+    Confirmed,
+    Cancelled,
+    Invoiced,
+}
+
+public enum Roles
+{
+    Customer,
+    HotelStaff
 }
