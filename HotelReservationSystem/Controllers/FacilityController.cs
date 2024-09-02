@@ -3,12 +3,14 @@ using HotelReservationSystem.Helpers;
 using HotelReservationSystem.Services.Facilities;
 using HotelReservationSystem.ViewModels;
 using HotelReservationSystem.ViewModels.Facilities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HotelReservationSystem.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class FacilityController : ControllerBase
     {
         IFacilityService facilityService;

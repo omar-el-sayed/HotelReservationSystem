@@ -4,6 +4,7 @@ using HotelReservationSystem.Mediators.Payment;
 using HotelReservationSystem.ViewModels;
 using HotelReservationSystem.ViewModels.Payment;
 using HotelReservationSystem.ViewModels.Payments;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Stripe;
 
@@ -11,6 +12,7 @@ namespace HotelReservationSystem.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(Roles = "Customer")]
     public class PaymentsController(IPaymentMediator paymentMediator) : BaseController
     {
         [HttpPost("charge")]
