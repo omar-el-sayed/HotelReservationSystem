@@ -13,6 +13,7 @@ public enum ErrorCode
     None = 0,
     UnKnown = 1,
     DoesNotExist,
+    InvalidDateRange,
     FailedUpdateRoom = 10,
     FailedDeleteRoom,
     FailedUpdateFacility = 20,
@@ -37,4 +38,8 @@ public enum Roles
 {
     Customer,
     HotelStaff
+    Pending =0,
+    Confirmed ,
+    Cancelled ,
+    Invoiced ,
 }

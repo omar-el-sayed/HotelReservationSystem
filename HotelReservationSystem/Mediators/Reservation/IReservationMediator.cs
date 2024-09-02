@@ -1,10 +1,12 @@
-﻿using HotelReservationSystem.DTOs.Rooms;
+﻿using HotelReservationSystem.DTOs.Reservations;
+using HotelReservationSystem.DTOs.Rooms;
 
 namespace HotelReservationSystem.Mediators.Reservation
 {
     public interface IReservationMediator
     {
-        List<RoomDTO> GetAvailableRooms(DateTime ReservationDate);
-
+        List<RoomDTO> GetAvailableRooms(DateTime CheckIn, DateTime CheckOut);
+        void MakeReservation(CreateResrvationDTO createResrvationDTO);
+        void CancleReservation(int ReservationId);
     }
 }

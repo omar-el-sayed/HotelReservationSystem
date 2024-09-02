@@ -10,6 +10,7 @@ public interface IGenericRepository<T>
     T? GetById(int id);
     T? GetByIdWithTracking(int id);
     T Add(T entity);
+    void AddRange(IEnumerable<T> entities);
     void Update(T entity);
     void Delete(T entity);
     void HardDelete(int id);

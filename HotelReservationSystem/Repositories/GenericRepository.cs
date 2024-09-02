@@ -56,4 +56,9 @@ public class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity
     {
         _context.SaveChanges();
     }
+
+    public void AddRange(IEnumerable<T> entities)
+    {
+        _context.AddRange(entities);
+    }
 }
