@@ -11,6 +11,8 @@ namespace HotelReservationSystem.ViewModels.Auth
             CreateMap<AuthViewModel, AuthDto>().ReverseMap();
             CreateMap<RegisterViewModel, RegisterDto>().ReverseMap();
             CreateMap<RegisterDto, User>().ReverseMap();
+            CreateMap<TokenRequestViewModel, TokenRequestDto>().ReverseMap();
+            CreateMap<AddRoleViewModel, AddRoleDto>().ReverseMap();
         }
     }
 }

@@ -63,45 +63,47 @@ namespace HotelReservationSystem.Services.Auth
             };
         }
 
-        //public async Task<AuthDto> GetTokenAsync(TokenRequestModel model)
-        //{
-        //    var authModel = new AuthDto();
+        public async Task<AuthDto> GetTokenAsync(TokenRequestDto model)
+        {
+            var authModel = new AuthDto();
 
-        //    var user = await _userManager.FindByEmailAsync(model.Email);
+            var user = await _userManager.FindByEmailAsync(model.Email);
 
-        //    if (user is null || !await _userManager.CheckPasswordAsync(user, model.Password))
-        //    {
-        //        authModel.Message = "Email or Password is incorrect!";
-        //        return authModel;
-        //    }
+            if (user is null || !await _userManager.CheckPasswordAsync(user, model.Password))
+            {
+                authModel.Message = "Email or Password is incorrect!";
+                return authModel;
+            }
 
-        //    var jwtSecurityToken = await CreateJwtToken(user);
-        //    var rolesList = await _userManager.GetRolesAsync(user);
+            var jwtSecurityToken = await CreateJwtToken(user);
+            var rolesList = await _userManager.GetRolesAsync(user);
 
-        //    authModel.IsAuthenticated = true;
-        //    authModel.Token = new JwtSecurityTokenHandler().WriteToken(jwtSecurityToken);
-        //    authModel.Email = user.Email;
-        //    authModel.Username = user.UserName;
-        //    authModel.ExpiresOn = jwtSecurityToken.ValidTo;
-        //    authModel.Roles = rolesList.ToList();
+            authModel.IsAuthenticated = true;
+            authModel.Token = new JwtSecurityTokenHandler().WriteToken(jwtSecurityToken);
+            authModel.Email = user.Email;
+            authModel.Username = user.UserName;
+            authModel.ExpiresOn = jwtSecurityToken.ValidTo;
+            authModel.Roles = rolesList.ToList();
 
-        //    return authModel;
-        //}
+            return authModel;
+        }
 
-        //public async Task<string> AddRoleAsync(AddRoleModel model)
-        //{
-        //    var user = await _userManager.FindByIdAsync(model.UserId);
+        public async Task<string> AddRoleAsync(AddRoleDto model)
+        {
+            var user = await _userManager.FindByIdAsync(model.UserId);
 
-        //    if (user is null || !await _roleManager.RoleExistsAsync(model.Role))
-        //        return "Invalid user ID or Role";
+            var role = GetUserRole(model.Role);
 
-        //    if (await _userManager.IsInRoleAsync(user, model.Role))
-        //        return "User already assigned to this role";
+            if (user is null || !await _roleManager.RoleExistsAsync(role))
+                return "Invalid user ID or Role";
 
-        //    var result = await _userManager.AddToRoleAsync(user, model.Role);
+            if (await _userManager.IsInRoleAsync(user, role))
+                return "User already assigned to this role";
 
-        //    return result.Succeeded ? string.Empty : "Sonething went wrong";
-        //}
+            var result = await _userManager.AddToRoleAsync(user, role);
+
+            return result.Succeeded ? string.Empty : "Sonething went wrong";
+        }
 
         private async Task<JwtSecurityToken> CreateJwtToken(User user)
         {

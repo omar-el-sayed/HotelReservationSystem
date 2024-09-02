@@ -24,5 +24,33 @@ namespace HotelReservationSystem.Controllers
 
             return ResultViewModel<AuthViewModel>.Success(result.MapeOne<AuthViewModel>(), result.Message);
         }
+
+        [HttpPost("login")]
+        public async Task<ResultViewModel<AuthViewModel>> LoginAsync(TokenRequestViewModel token)
+        {
+            if (!ModelState.IsValid)
+                return ResultViewModel<AuthViewModel>.Failure(ErrorCode.FailedLogin, "");
+
+            var result = await _authService.GetTokenAsync(token.MapeOne<TokenRequestDto>());
+
+            if (!result.IsAuthenticated)
+                return ResultViewModel<AuthViewModel>.Failure(ErrorCode.FailedLogin, result.Message);
+
+            return ResultViewModel<AuthViewModel>.Success(result.MapeOne<AuthViewModel>(), result.Message);
+        }
+
+        [HttpPost("addrole")]
+        public async Task<ResultViewModel<string>> AssignRoleAsync(AddRoleViewModel roleVM)
+        {
+            if (!ModelState.IsValid)
+                return ResultViewModel<string>.Failure(ErrorCode.FailedAddRole, "");
+
+            var result = await _authService.AddRoleAsync(roleVM.MapeOne<AddRoleDto>());
+
+            if (!string.IsNullOrEmpty(result))
+                return ResultViewModel<string>.Failure(ErrorCode.FailedAddRole, result);
+
+            return ResultViewModel<string>.Success("User assigned to role successfully", result);
+        }
     }
 }

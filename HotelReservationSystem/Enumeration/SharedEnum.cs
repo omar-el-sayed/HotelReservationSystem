@@ -21,6 +21,7 @@ public enum ErrorCode
     FaildAddFacility,
     FailedRegister = 100,
     FailedLogin,
+    FailedAddRole,
     FailedLogout,
     PaymentFailure = 1000
 }

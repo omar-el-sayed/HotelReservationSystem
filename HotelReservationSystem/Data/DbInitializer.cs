@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using HotelReservationSystem.Helpers;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace HotelReservationSystem.Data
@@ -12,15 +13,15 @@ namespace HotelReservationSystem.Data
                 a.HasData(new IdentityRole
                 {
                     Id = Guid.NewGuid().ToString(),
-                    Name = "HotelStaff",
-                    NormalizedName = "HotelStaff".ToUpper(),
+                    Name = Constants.HotelStaff,
+                    NormalizedName = Constants.HotelStaff.ToUpper(),
                     ConcurrencyStamp = Guid.NewGuid().ToString()
                 });
                 a.HasData(new IdentityRole
                 {
                     Id = Guid.NewGuid().ToString(),
-                    Name = "Customer",
-                    NormalizedName = "Customer".ToUpper(),
+                    Name = Constants.Customer,
+                    NormalizedName = Constants.Customer.ToUpper(),
                     ConcurrencyStamp = Guid.NewGuid().ToString()
                 });
             });
