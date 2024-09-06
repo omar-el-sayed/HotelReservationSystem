@@ -6,6 +6,7 @@ using HotelReservationSystem.Repositories;
 using HotelReservationSystem.Services.Auth;
 using HotelReservationSystem.Services.Facilities;
 using HotelReservationSystem.Services.PictureRooms;
+using HotelReservationSystem.Services.Reporting;
 using HotelReservationSystem.Services.Reservations;
 using HotelReservationSystem.Services.RoomFacilites;
 using HotelReservationSystem.Services.Rooms;
@@ -34,6 +35,7 @@ namespace HotelReservationSystem
             }).InstancePerLifetimeScope();
 
             builder.RegisterGeneric(typeof(GenericRepository<>)).As(typeof(IGenericRepository<>));
+            builder.RegisterAssemblyTypes(typeof(IReportingService).Assembly).AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterAssemblyTypes(typeof(IFacilityService).Assembly).AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterAssemblyTypes(typeof(IRoomFacilityService).Assembly).AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterAssemblyTypes(typeof(IRoomService).Assembly).AsImplementedInterfaces().InstancePerLifetimeScope();
