@@ -44,7 +44,7 @@ namespace HotelReservationSystem.Services.Reservations
             var ReservedRooms = repo.Get(r => ((r.CheckinDate < CheckOut && r.CheckoutDate > CheckOut) || (r.CheckoutDate > CheckIn && r.CheckinDate < CheckIn)))
                 .Map<ReservationDTO>();
             var ReservedRoomIDs = ReservedRooms.Where(r => r.Status != ReservationStatus.Cancelled)
-                .SelectMany(r => r.RoomDTOs.Select(rr => rr.Id)).ToList();
+                .SelectMany(r => r.roomReservationDTOs.Select(rr => rr.RoomId)).ToList();
             return ReservedRoomIDs;
         }
 
