@@ -13,7 +13,7 @@ namespace HotelReservationSystem.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
+    //[Authorize]
     public class RoomController(IRoomMediator roomMediator,IReservationMediator reservationMediator) : BaseController
     {
         //[HttpGet("getavailable")]

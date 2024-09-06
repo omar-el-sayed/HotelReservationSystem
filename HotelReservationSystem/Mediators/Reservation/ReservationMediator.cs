@@ -51,9 +51,9 @@ namespace HotelReservationSystem.Mediators.Reservation
             reservationService.UpdateReservationStatus(ReservtionId,ReservationStatus.Pending);
             List<RoomReservation> roomReservations = new List<RoomReservation>();
 
-            foreach (var Room in createResrvationDTO.RoomDTOs)
+            foreach (var RoomID in createResrvationDTO.RoomIds)
             {
-                roomReservations.Add(new RoomReservation { RoomId = Room.Id, ReservationId = ReservtionId });
+                roomReservations.Add(new RoomReservation { RoomId = RoomID, ReservationId = ReservtionId });
             }
             roomReservationService.AddRange(roomReservations);
             return ReservtionId;

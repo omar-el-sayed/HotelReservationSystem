@@ -10,7 +10,7 @@ namespace HotelReservationSystem.ViewModels.Rservations
         public decimal TotalPrice { get; set; }
         public ReservationStatus Status { get; set; }
         public int NumOfGuests { get; set; }
-        public List<RoomDTO>? RoomDTOs { get; set; }
-        //public List<RoomReservation>? RoomReservations { get; set; }
+        //public List<RoomDTO>? RoomDTOs { get; set; }
+        public List<RoomReservation>? RoomReservations { get; set; }
     }
 }
