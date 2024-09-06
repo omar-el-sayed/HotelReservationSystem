@@ -1,17 +1,20 @@
 ﻿using HotelReservationSystem.DTOs.Rooms;
 using HotelReservationSystem.Helpers;
+using HotelReservationSystem.Mediators.Reservation;
 using HotelReservationSystem.Mediators.Rooms;
+using HotelReservationSystem.Models;
 using HotelReservationSystem.ViewModels;
 using HotelReservationSystem.ViewModels.Rooms;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Identity.Client;
 
 namespace HotelReservationSystem.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
-    public class RoomController(IRoomMediator roomMediator) : BaseController
+    //[Authorize]
+    public class RoomController(IRoomMediator roomMediator,IReservationMediator reservationMediator) : BaseController
     {
         //[HttpGet("getavailable")]
         //public ResultViewModel<IEnumerable<RoomViewModel>> GetAvailableRooms()
@@ -19,6 +22,13 @@ namespace HotelReservationSystem.Controllers
         //    var availableRooms = roomMediator.GetAvailableRooms().AsQueryable().Map<RoomViewModel>();
         //    return ResultViewModel<IEnumerable<RoomViewModel>>.Success(availableRooms);
         //}
+        [HttpGet("getavailable")]
+        public ResultViewModel<IEnumerable<RoomViewModel>> GetAvailableRooms()
+        {
+            var rooms = reservationMediator.GetAvailableRooms(DateTime.Now, DateTime.Now.AddDays(3))
+                .AsQueryable().Map<RoomViewModel>();
+            return ResultViewModel<IEnumerable<RoomViewModel>>.Success(rooms);
+        }
 
         [HttpGet("getbyid/{id}")]
         public ResultViewModel<RoomViewModel> GetById(int id)

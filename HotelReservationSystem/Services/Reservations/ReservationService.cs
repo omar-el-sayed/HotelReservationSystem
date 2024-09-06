@@ -17,7 +17,10 @@ namespace HotelReservationSystem.Services.Reservations
         {
             this.repo = repo;
         }
-
+        public IEnumerable<ReservationDTO> GetReservations()
+        {
+            return repo.GetAll().Map<ReservationDTO>();
+        }
         public int AddReservation(CreateResrvationDTO createResrvationDTO)
         {
             var reservation = createResrvationDTO.MapeOne<Reservation>();
@@ -41,7 +44,7 @@ namespace HotelReservationSystem.Services.Reservations
             var ReservedRooms = repo.Get(r => ((r.CheckinDate < CheckOut && r.CheckoutDate > CheckOut) || (r.CheckoutDate > CheckIn && r.CheckinDate < CheckIn)))
                 .Map<ReservationDTO>();
             var ReservedRoomIDs = ReservedRooms.Where(r => r.Status != ReservationStatus.Cancelled)
-                .SelectMany(r => r.RoomDTOs.Select(rr => rr.Id)).ToList();
+                .SelectMany(r => r.roomReservationDTOs.Select(rr => rr.RoomId)).ToList();
             return ReservedRoomIDs;
         }
 

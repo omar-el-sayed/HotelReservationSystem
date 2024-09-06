@@ -7,7 +7,7 @@ namespace HotelReservationSystem.Models
     {
         public Reservation()
         {
-            Rooms = new List<Room>();
+            //Rooms = new List<Room>();
             RoomReservations = new List<RoomReservation>();
         }
         public DateTime CheckinDate { get; set; }
@@ -15,7 +15,7 @@ namespace HotelReservationSystem.Models
         public decimal TotalPrice {  get; set; }
         public ReservationStatus Status { get; set; }
         public int NumOfGuests { get; set; }
-        public List<Room>? Rooms { get; set; }
+        //public List<Room>? Rooms { get; set; }
 
       //  public int? CustomerId { get; set; }
        // public Customer? Customer { get; set; }

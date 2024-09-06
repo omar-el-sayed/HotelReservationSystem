@@ -28,6 +28,10 @@ namespace HotelReservationSystem.Mediators.Reservation
         {
             reservationService.UpdateReservationStatus(ReservationId, ReservationStatus.Cancelled);
         }
+        public void ConfirmReservation(int ReservationId)
+        {
+            reservationService.UpdateReservationStatus(ReservationId, ReservationStatus.Confirmed);
+        }
 
         public List<RoomDTO> GetAvailableRooms(DateTime CheckIn,DateTime CheckOut)
         {
@@ -36,17 +40,23 @@ namespace HotelReservationSystem.Mediators.Reservation
             return availableRooms;
         }
 
-        public void MakeReservation(CreateResrvationDTO createResrvationDTO)
+        public IEnumerable<ReservationDTO> GetReservations()
+        {
+           return  reservationService.GetReservations();
+        }
+
+        public int MakeReservation(CreateResrvationDTO createResrvationDTO)
         {
             int ReservtionId = reservationService.AddReservation(createResrvationDTO);
             reservationService.UpdateReservationStatus(ReservtionId,ReservationStatus.Pending);
             List<RoomReservation> roomReservations = new List<RoomReservation>();
 
-            foreach (var Room in createResrvationDTO.RoomDTOs)
+            foreach (var RoomID in createResrvationDTO.RoomIds)
             {
-                roomReservations.Add(new RoomReservation { RoomId = Room.Id, ReservationId = ReservtionId });
+                roomReservations.Add(new RoomReservation { RoomId = RoomID, ReservationId = ReservtionId });
             }
             roomReservationService.AddRange(roomReservations);
+            return ReservtionId;
         }
     }
 }
