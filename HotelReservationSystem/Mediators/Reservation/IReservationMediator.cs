@@ -8,6 +8,8 @@ namespace HotelReservationSystem.Mediators.Reservation
         List<RoomDTO> GetAvailableRooms(DateTime CheckIn, DateTime CheckOut);
         int MakeReservation(CreateResrvationDTO createResrvationDTO);
         void CancleReservation(int ReservationId);
+        void ConfirmReservation(int ReservationId);
+
         IEnumerable<ReservationDTO> GetReservations();
     }
 }

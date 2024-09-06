@@ -1,13 +1,16 @@
 ﻿using Autofac;
 using HotelReservationSystem.Data;
 using HotelReservationSystem.Mediators.Payment;
+using HotelReservationSystem.Mediators.Reservation;
 using HotelReservationSystem.Mediators.Rooms;
 using HotelReservationSystem.Repositories;
 using HotelReservationSystem.Services.Auth;
 using HotelReservationSystem.Services.Facilities;
+using HotelReservationSystem.Services.Feedbacks;
 using HotelReservationSystem.Services.PictureRooms;
 using HotelReservationSystem.Services.Reservations;
 using HotelReservationSystem.Services.RoomFacilites;
+using HotelReservationSystem.Services.RoomReservations;
 using HotelReservationSystem.Services.Rooms;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
@@ -42,6 +45,12 @@ namespace HotelReservationSystem
             builder.RegisterAssemblyTypes(typeof(IPictureRoomService).Assembly).AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterAssemblyTypes(typeof(IPaymentMediator).Assembly).AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterAssemblyTypes(typeof(IAuthService).Assembly).AsImplementedInterfaces().InstancePerLifetimeScope();
+            builder.RegisterAssemblyTypes(typeof(IFeedbackService).Assembly).AsImplementedInterfaces().InstancePerLifetimeScope();
+            builder.RegisterAssemblyTypes(typeof(IRoomReservationService).Assembly).AsImplementedInterfaces().InstancePerLifetimeScope();
+            builder.RegisterAssemblyTypes(typeof(IReservationMediator).Assembly).AsImplementedInterfaces().InstancePerLifetimeScope();
+
+
+
         }
     }
 }

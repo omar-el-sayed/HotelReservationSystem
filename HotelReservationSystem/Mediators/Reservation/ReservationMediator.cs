@@ -28,6 +28,10 @@ namespace HotelReservationSystem.Mediators.Reservation
         {
             reservationService.UpdateReservationStatus(ReservationId, ReservationStatus.Cancelled);
         }
+        public void ConfirmReservation(int ReservationId)
+        {
+            reservationService.UpdateReservationStatus(ReservationId, ReservationStatus.Confirmed);
+        }
 
         public List<RoomDTO> GetAvailableRooms(DateTime CheckIn,DateTime CheckOut)
         {
