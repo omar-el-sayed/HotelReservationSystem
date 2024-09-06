@@ -4,6 +4,6 @@ namespace HotelReservationSystem.Services.RoomReservations
 {
     public interface IRoomReservationService
     {
-        void AddRange(List<RoomReservation> roomReservations);
+        void AddRange(int reservationID,List<int> roomIDs);
     }
 }

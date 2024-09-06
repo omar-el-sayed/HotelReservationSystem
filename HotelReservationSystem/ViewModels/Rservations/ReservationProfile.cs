@@ -10,7 +10,7 @@ namespace HotelReservationSystem.ViewModels.Rservations
         {
             CreateMap<ReservationViewModel, ReservationDTO>()
                 .ForMember(dst=>dst.Id,opt=>opt.Ignore())
-                .ForMember(dst=>dst.roomReservationDTOs,opt=>opt.MapFrom(src=>src.RoomReservations)).ReverseMap();
+                .ForMember(dst=>dst.roomReservationDTOs,opt=>opt.MapFrom(src=>src.RoomReservationsVM)).ReverseMap();
 
             CreateMap<ReservationDTO,Reservation>()
                 .ForMember(dst=>dst.RoomReservations,opt=>opt.MapFrom(src=>src.roomReservationDTOs)).ReverseMap();

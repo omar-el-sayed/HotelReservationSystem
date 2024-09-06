@@ -49,13 +49,13 @@ namespace HotelReservationSystem.Mediators.Reservation
         {
             int ReservtionId = reservationService.AddReservation(createResrvationDTO);
             reservationService.UpdateReservationStatus(ReservtionId,ReservationStatus.Pending);
-            List<RoomReservation> roomReservations = new List<RoomReservation>();
+            //List<RoomReservation> roomReservations = new List<RoomReservation>();
 
-            foreach (var RoomID in createResrvationDTO.RoomIds)
-            {
-                roomReservations.Add(new RoomReservation { RoomId = RoomID, ReservationId = ReservtionId });
-            }
-            roomReservationService.AddRange(roomReservations);
+            //foreach (var RoomID in createResrvationDTO.RoomIds)
+            //{
+            //    roomReservations.Add(new RoomReservation { RoomId = RoomID, ReservationId = ReservtionId });
+            //}
+            roomReservationService.AddRange(ReservtionId, createResrvationDTO.RoomIds);
             return ReservtionId;
         }
     }
