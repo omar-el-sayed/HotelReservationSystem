@@ -11,9 +11,20 @@ namespace HotelReservationSystem.Services.RoomReservations
         {
             this.repo = repo;
         }
-        public void AddRange(List<RoomReservation> roomReservations)
+        public void AddRange(int reservationID,List<int> roomIDS)
         {
-            repo.AddRange(roomReservations);
+                foreach (var roomID in roomIDS)
+                {
+                    var roomReservation = new RoomReservation()
+                    {
+                        RoomId = roomID,
+                        ReservationId = reservationID
+                    };
+                    repo.Add(roomReservation);
+
+                }
+
+                repo.SaveChanges();
         }
     }
 }
