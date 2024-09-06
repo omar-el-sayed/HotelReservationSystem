@@ -8,6 +8,7 @@ using HotelReservationSystem.Middlewares;
 using HotelReservationSystem.Models;
 using HotelReservationSystem.ViewModels.Auth;
 using HotelReservationSystem.ViewModels.Facilities;
+using HotelReservationSystem.ViewModels.Feedback;
 using HotelReservationSystem.ViewModels.Payments;
 using HotelReservationSystem.ViewModels.PictureRooms;
 using HotelReservationSystem.ViewModels.RoomFailites;
@@ -44,6 +45,7 @@ builder.Services.AddAutoMapper(
     typeof(FacilityProfile),
     typeof(PictureRoomProfile),
     typeof(RoomFacilityProfile),
+    typeof(FeedbackProfile),
     typeof(AuthProfile));
 
 builder.Services.AddAuthentication(options =>
